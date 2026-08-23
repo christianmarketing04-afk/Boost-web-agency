@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "image": "assets/images/portfolio/slow-coffee.jpg",
+      "name": "Slow Coffee Shop",
+      "category": "Site vitrine",
+      "description": "Un site warm beige aux tons neutres pour une expérience utilisateur apaisante, pensé pour un café indépendant orienté bien-être.",
+      "objective": "Présenter le café, son menu et ses valeurs, et donner envie de réserver une table.",
+      "problem": "Le café n'avait aucune présence en ligne pour se faire connaître au-delà du bouche-à-oreille.",
+      "solution": "Un site vitrine chaleureux avec menu, valeurs et prise de réservation.",
+      "result": "Une image de marque cohérente et une meilleure visibilité locale.",
+      "technologies": "HTML, CSS, JavaScript",
+      "url": "",
+      "visible": true,
+      "order": 1
+    },
+    {
+      "image": "assets/images/portfolio/coach-jean-fit.png",
+      "name": "Fitness Coach Elite",
+      "category": "Site vitrine",
+      "description": "Un design percutant en rouge sombre optimisé pour la conversion mobile, pensé pour un coach sportif indépendant.",
+      "objective": "Mettre en valeur le coaching personnalisé et pousser à la prise de contact.",
+      "problem": "Le coach avait besoin d'un site professionnel pour crédibiliser son offre de coaching.",
+      "solution": "Un site sombre et percutant, centré sur la transformation physique et les résultats.",
+      "result": "Une présence en ligne professionnelle qui inspire confiance et pousse à l'action.",
+      "technologies": "HTML, CSS, JavaScript",
+      "url": "https://onlineshopht509.wixsite.com/my-site-2",
+      "visible": true,
+      "order": 2
+    },
+    {
+      "image": "assets/images/portfolio/coin-cadeau.jpg",
+      "name": "Coin Cadeau",
+      "category": "Site e-commerce",
+      "description": "Une maquette unique pour une boutique de cadeaux, pensée pour la vente en ligne en Haïti.",
+      "objective": "Permettre aux clients de trouver facilement le cadeau parfait et de commander en ligne.",
+      "problem": "Le commerce avait besoin d'une vitrine e-commerce claire et rassurante pour vendre en ligne.",
+      "solution": "Une boutique en ligne avec catégories, recherche et mise en avant des garanties (livraison, paiement sécurisé, satisfaction).",
+      "result": "Une expérience d'achat en ligne claire qui inspire confiance aux visiteurs.",
+      "technologies": "HTML, CSS, JavaScript",
+      "url": "https://onlineshopht509.wixsite.com/my-site-1",
+      "visible": true,
+      "order": 3
+    }
+  ]
+}

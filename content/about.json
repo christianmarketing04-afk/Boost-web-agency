@@ -1,0 +1,16 @@
+{
+  "eyebrow": "À propos",
+  "title": "Boost Web Agency",
+  "intro": "Je suis spécialisé dans la création de sites web modernes et performants. Mon objectif est simple : aider les entrepreneurs et les entreprises à attirer, convaincre et convertir leurs visiteurs en clients.",
+  "approach_title": "Mon approche",
+  "approach_text": "L'objectif n'est pas simplement de créer un joli site, mais de créer une présence en ligne qui aide réellement l'entreprise à attirer, convaincre et convertir ses visiteurs. Chaque projet commence par comprendre votre activité avant de penser design.",
+  "way_title": "Ma façon de travailler",
+  "way_text": "Un processus clair en 3 étapes : planification, conception & développement, puis lancement & optimisation. Vous êtes accompagné à chaque étape, avec des points réguliers pour ajuster le projet à vos retours.",
+  "values": [
+    { "title": "Transparence", "description": "Un devis clair, des délais respectés, une communication directe." },
+    { "title": "Qualité", "description": "Des sites rapides, propres et pensés pour durer." },
+    { "title": "Résultat", "description": "Chaque décision de design sert un seul objectif : convertir." }
+  ],
+  "why_title": "Pourquoi travailler avec moi",
+  "why_text": "Parce que vous obtenez un site fait sur mesure pour votre activité, livré rapidement, et pensé dès le départ pour transformer vos visiteurs en clients — pas un simple gabarit générique."
+}

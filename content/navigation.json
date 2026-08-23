@@ -1,0 +1,11 @@
+{
+  "items": [
+    { "label": "Accueil", "link": "index.html", "order": 1, "visible": true },
+    { "label": "Services", "link": "services.html", "order": 2, "visible": true },
+    { "label": "Portfolio", "link": "portfolio.html", "order": 3, "visible": true },
+    { "label": "À propos de moi", "link": "a-propos.html", "order": 4, "visible": true },
+    { "label": "Contact", "link": "contact.html", "order": 5, "visible": true }
+  ],
+  "cta_label": "Démarrer mon projet",
+  "cta_link": "appliquer.html"
+}

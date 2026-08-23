@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boost Web Agency — Sites web modernes qui convertissent</title>
+<meta name="description" content="Boost Web Agency crée des sites web modernes, rapides et responsives pour aider votre entreprise à attirer plus de clients.">
+<link rel="icon" href="assets/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header id="site-header"></header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="aurora"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="eyebrow reveal">Boost Web Agency</div>
+        <h1 class="reveal">Attirez plus de clients<br>avec un <span class="accent">site web</span><br>qui convertit</h1>
+        <p class="reveal reveal-delay-1" id="heroDesc"></p>
+        <div class="hero-ctas reveal reveal-delay-2">
+          <a href="appliquer.html" class="btn btn-primary">Travaillons ensemble</a>
+          <a href="portfolio.html" class="btn btn-outline">Voir mes projets</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Mes services</div>
+        <h2>Des services conçus pour développer votre présence en ligne</h2>
+        <p>Des solutions modernes de création web pensées pour renforcer votre image de marque et transformer vos visiteurs en clients.</p>
+      </div>
+      <div class="grid grid-3" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Mon processus</div>
+        <h2>Comment je transforme vos idées en un site web professionnel</h2>
+      </div>
+      <div class="grid grid-3" id="processGrid"></div>
+      <div class="text-center mt-lg reveal">
+        <a href="appliquer.html" class="btn btn-primary">Commencer maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="section" id="portfolio">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Mes réalisations</div>
+        <h2>Découvrez quelques projets que j'ai réalisés pour mes clients</h2>
+      </div>
+      <div class="grid grid-3" id="portfolioGrid"></div>
+      <div class="text-center mt-lg reveal">
+        <a href="portfolio.html" class="btn btn-outline">Voir plus de projets</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">À propos de moi</div>
+        <h2>Un partenaire pour faire grandir votre présence en ligne</h2>
+        <p>Je suis spécialisé dans la création de sites web modernes et performants. Mon objectif est simple : aider les entrepreneurs et les entreprises à attirer plus de clients grâce à une présence en ligne efficace.</p>
+        <p>Chaque projet est conçu avec une approche stratégique, en combinant design, performance et expérience utilisateur.</p>
+        <a href="appliquer.html" class="btn btn-primary">Lance ton projet maintenant</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Témoignages</div>
+        <h2>Ce que mes clients disent de notre collaboration</h2>
+      </div>
+      <div class="grid grid-3" id="testimonialsGrid"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">FAQ</div>
+        <h2>Questions fréquentes</h2>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Vous voulez lancer votre projet mais vous ne savez pas par où commencer ?</h2>
+        <p>Répondez à quelques questions pour déterminer la meilleure solution pour votre projet.</p>
+        <a href="appliquer.html" class="btn btn-primary">Commencer mon projet</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/content.js"></script>
+<script>
+  renderHeader('index.html');
+  renderFooter();
+  (async ()=>{
+    const home = await Content.load('content/home.json');
+    document.getElementById('heroDesc').textContent = home.hero.description;
+    const services = await Content.load('content/services.json');
+    renderServiceCards(services.items, 'servicesGrid');
+    const process = await Content.load('content/process.json');
+    renderProcessCards(process.items, 'processGrid');
+    const portfolio = await Content.load('content/portfolio.json');
+    renderPortfolioCards(portfolio.items, 'portfolioGrid', 3);
+    const testimonials = await Content.load('content/testimonials.json');
+    renderTestimonials(testimonials.items, 'testimonialsGrid');
+    const faq = await Content.load('content/faq.json');
+    renderFAQ(faq.items, 'faqList');
+    observeReveals();
+  })();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

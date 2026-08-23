@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Appliquer — Boost Web Agency</title>
+<meta name="description" content="Décrivez votre projet en quelques étapes et recevez une réponse de Boost Web Agency sous 2 heures.">
+<link rel="icon" href="assets/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<main>
+  <section class="section" style="padding-top:56px">
+    <div class="container">
+
+      <div class="apply-wrap reveal" id="applyForm">
+
+        <!-- SIDE PANEL -->
+        <aside class="apply-side">
+          <div class="eyebrow" style="background:rgba(91,157,255,.15);border-color:rgba(91,157,255,.3)">Boost Web Agency</div>
+          <h2>Parlons de <span class="accent">votre projet</span></h2>
+          <p>Répondez à quelques questions ci-dessous pour nous permettre de mieux comprendre votre projet. Nous vous contacterons dans les 2 heures.</p>
+          <div class="apply-perks">
+            <div class="apply-perk">
+              <div class="icon-badge">${''}</div>
+              <div><div class="apply-perk-title">Réponse rapide</div><div class="apply-perk-text">Nous vous contactons sous 2 heures</div></div>
+            </div>
+            <div class="apply-perk">
+              <div class="icon-badge"></div>
+              <div><div class="apply-perk-title">Accompagnement personnalisé</div><div class="apply-perk-text">Un expert analyse votre projet</div></div>
+            </div>
+            <div class="apply-perk">
+              <div class="icon-badge"></div>
+              <div><div class="apply-perk-title">Service professionnel</div><div class="apply-perk-text">Des solutions sur mesure pour vous</div></div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- MAIN FORM -->
+        <div class="apply-main">
+          <div class="progress-bar" id="progressBar"></div>
+
+          <!-- STEP 1 -->
+          <div class="form-step active" data-step="1">
+            <div class="step-eyebrow">Étape 1</div>
+            <h3 class="step-title">Quel type de site recherchez-vous ?</h3>
+            <div class="choice-grid" data-choice-group="step1" data-key="siteType">
+              <label class="choice-card" data-value="Site vitrine"><div class="choice-title">Site vitrine<span class="dot"></span></div><div class="choice-desc">Présenter mon entreprise ou mes services</div></label>
+              <label class="choice-card" data-value="Site e-commerce"><div class="choice-title">Site e-commerce<span class="dot"></span></div><div class="choice-desc">Vendre des produits en ligne</div></label>
+              <label class="choice-card" data-value="Portfolio"><div class="choice-title">Portfolio<span class="dot"></span></div><div class="choice-desc">Présenter mes réalisations</div></label>
+              <label class="choice-card" data-value="Landing page"><div class="choice-title">Landing page<span class="dot"></span></div><div class="choice-desc">Page promotionnelle pour une offre ou un produit</div></label>
+              <label class="choice-card" data-value="Autre"><div class="choice-title">Autre<span class="dot"></span></div><div class="choice-desc">Précisez votre besoin</div></label>
+            </div>
+            <div class="field" data-other-for="siteType" style="display:none;margin-top:16px">
+              <label>Précisez votre besoin</label>
+              <input type="text" data-field="siteTypeOther" placeholder="Exemple : site de réservation pour un salon de beauté">
+            </div>
+            <div class="step-actions">
+              <span></span>
+              <button class="btn btn-primary" data-action="next">Suivant →</button>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="form-step" data-step="2">
+            <div class="step-eyebrow">Étape 2</div>
+            <h3 class="step-title">Quel est votre objectif principal avec ce site ?</h3>
+            <div class="choice-grid" data-choice-group="step2" data-key="goal">
+              <label class="choice-card" data-value="Présenter mon entreprise / activité"><div class="choice-title">Présenter mon entreprise / activité<span class="dot"></span></div></label>
+              <label class="choice-card" data-value="Vendre des produits en ligne"><div class="choice-title">Vendre des produits en ligne<span class="dot"></span></div></label>
+              <label class="choice-card" data-value="Obtenir des demandes de contact / prospects"><div class="choice-title">Obtenir des demandes de contact<span class="dot"></span></div></label>
+              <label class="choice-card" data-value="Prendre des rendez-vous / réservations"><div class="choice-title">Prendre des rendez-vous<span class="dot"></span></div></label>
+              <label class="choice-card" data-value="Renforcer ma marque / image"><div class="choice-title">Renforcer ma marque / image<span class="dot"></span></div></label>
+              <label class="choice-card" data-value="Autre"><div class="choice-title">Autre<span class="dot"></span></div></label>
+            </div>
+            <div class="field" data-other-for="goal" style="display:none;margin-top:16px">
+              <label>Précisez votre objectif</label>
+              <input type="text" data-field="goalOther">
+            </div>
+            <div class="step-actions">
+              <button class="btn btn-outline" data-action="prev">← Précédent</button>
+              <button class="btn btn-primary" data-action="next">Suivant →</button>
+            </div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="form-step" data-step="3">
+            <div class="step-eyebrow">Étape 3</div>
+            <h3 class="step-title">Quelles fonctionnalités souhaitez-vous intégrer à votre site ?</h3>
+            <p style="margin-top:-16px;margin-bottom:18px;font-size:13.5px">Sélectionnez tout ce qui s'applique</p>
+            <div class="choice-grid" data-choice-group="step3" data-key="features">
+              <label class="choice-card" data-multi data-value="Formulaire de contact"><div class="choice-title">Formulaire de contact<span class="dot"></span></div></label>
+              <label class="choice-card" data-multi data-value="Bouton WhatsApp"><div class="choice-title">Bouton WhatsApp<span class="dot"></span></div></label>
+              <label class="choice-card" data-multi data-value="Paiement en ligne"><div class="choice-title">Paiement en ligne<span class="dot"></span></div></label>
+              <label class="choice-card" data-multi data-value="Réservation en ligne"><div class="choice-title">Réservation en ligne<span class="dot"></span></div></label>
+              <label class="choice-card" data-multi data-value="Blog / Actualités"><div class="choice-title">Blog / Actualités<span class="dot"></span></div></label>
+              <label class="choice-card" data-multi data-value="Galerie / Portfolio"><div class="choice-title">Galerie / Portfolio<span class="dot"></span></div></label>
+              <label class="choice-card" data-multi data-value="Espace membre / Connexion"><div class="choice-title">Espace membre / Connexion<span class="dot"></span></div></label>
+              <label class="choice-card" data-multi data-value="Autre"><div class="choice-title">Autre<span class="dot"></span></div></label>
+            </div>
+            <div class="field" data-other-for="features" style="display:none;margin-top:16px">
+              <label>Précisez une autre fonctionnalité</label>
+              <input type="text" data-field="featuresOther">
+            </div>
+            <div class="step-actions">
+              <button class="btn btn-outline" data-action="prev">← Précédent</button>
+              <button class="btn btn-primary" data-action="next">Suivant →</button>
+            </div>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="form-step" data-step="4">
+            <div class="step-eyebrow">Étape 4</div>
+            <h3 class="step-title">Avez-vous déjà un site web ?</h3>
+            <div class="choice-grid" data-choice-group="step4" data-key="hasSite">
+              <label class="choice-card" data-value="Oui, j'ai déjà un site"><div class="choice-title">Oui, j'ai déjà un site<span class="dot"></span></div></label>
+              <label class="choice-card" data-value="Non, je n'ai pas encore de site"><div class="choice-title">Non, pas encore de site<span class="dot"></span></div></label>
+            </div>
+            <div class="step-actions">
+              <button class="btn btn-outline" data-action="prev">← Précédent</button>
+              <button class="btn btn-primary" data-action="next">Suivant →</button>
+            </div>
+          </div>
+
+          <!-- STEP 5 -->
+          <div class="form-step" data-step="5">
+            <div class="step-eyebrow">Étape 5</div>
+            <h3 class="step-title">Quand souhaitez-vous lancer votre projet ?</h3>
+            <div class="choice-grid" data-choice-group="step5" data-key="timeline">
+              <label class="choice-card" data-value="Dès que possible"><div class="choice-title">Dès que possible<span class="dot"></span></div></label>
+              <label class="choice-card" data-value="Dans les 2 à 4 semaines"><div class="choice-title">Dans 2 à 4 semaines<span class="dot"></span></div></label>
+              <label class="choice-card" data-value="Dans 1 à 3 mois"><div class="choice-title">Dans 1 à 3 mois<span class="dot"></span></div></label>
+              <label class="choice-card" data-value="Dans plus de 3 mois"><div class="choice-title">Dans plus de 3 mois<span class="dot"></span></div></label>
+              <label class="choice-card" data-value="Je ne sais pas encore"><div class="choice-title">Je ne sais pas encore<span class="dot"></span></div></label>
+            </div>
+            <div class="step-actions">
+              <button class="btn btn-outline" data-action="prev">← Précédent</button>
+              <button class="btn btn-primary" data-action="next">Suivant →</button>
+            </div>
+          </div>
+
+          <!-- STEP 6 -->
+          <div class="form-step" data-step="6">
+            <div class="step-eyebrow">Étape 6</div>
+            <h3 class="step-title">Vos informations de contact</h3>
+            <div class="field" data-field="name">
+              <label>Nom complet <span class="req">*</span></label>
+              <input type="text" data-field="name">
+              <div class="field-error"></div>
+            </div>
+            <div class="field" data-field="email">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" data-field="email">
+              <div class="field-error"></div>
+            </div>
+            <div class="field" data-field="phone">
+              <label>Téléphone / WhatsApp <span class="req">*</span></label>
+              <input type="tel" data-field="phone">
+              <div class="field-error"></div>
+            </div>
+            <div class="field">
+              <label>Ville / Pays</label>
+              <input type="text" data-field="city" placeholder="Port-au-Prince, Haïti">
+            </div>
+            <div class="step-actions">
+              <button class="btn btn-outline" data-action="prev">← Précédent</button>
+              <button class="btn btn-primary" data-action="next">Suivant →</button>
+            </div>
+          </div>
+
+          <!-- STEP 7: RECAP -->
+          <div class="form-step" data-step="7">
+            <div class="step-eyebrow">Étape 7</div>
+            <h3 class="step-title">Récapitulatif de votre projet</h3>
+            <p style="margin-top:-16px">Vérifiez les informations ci-dessous avant l'envoi.</p>
+            <div class="recap-list" id="recapList"></div>
+            <div class="step-actions">
+              <button class="btn btn-outline" data-action="prev">← Précédent</button>
+              <button class="btn btn-primary" data-action="submit">Envoyer ma demande →</button>
+            </div>
+          </div>
+
+          <!-- STEP 8: CONFIRMATION -->
+          <div class="form-step" data-step="8">
+            <div class="confirm-screen">
+              <div class="confirm-icon">${''}</div>
+              <h2>Merci !</h2>
+              <p>Votre demande a été envoyée avec succès.<br>Nous avons bien reçu votre projet et nous vous contacterons dans les 2 heures.</p>
+              <p style="font-weight:600;color:var(--text);margin-top:24px">Que se passe-t-il maintenant ?</p>
+              <ul class="next-steps">
+                <li>Nous analysons votre projet</li>
+                <li>Un expert vous contactera rapidement</li>
+                <li>Nous discuterons de vos besoins en détail</li>
+              </ul>
+              <button class="btn btn-primary" data-action="restart">Retour à l'accueil</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/content.js"></script>
+<script>
+  renderHeader('appliquer.html');
+  renderFooter();
+  document.querySelectorAll('.apply-perk .icon-badge').forEach((el,i)=>{
+    const icons = [ICONS.check, ICONS.rocket, ICONS.layout];
+    el.innerHTML = icons[i] || ICONS.check;
+  });
+  document.querySelector('.confirm-icon').innerHTML = ICONS.check;
+  observeReveals();
+</script>
+<script src="js/apply-form.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

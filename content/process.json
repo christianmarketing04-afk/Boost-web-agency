@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "number": "01",
+      "title": "Planification & Analyse",
+      "description": "Nous discutons de votre projet, vos besoins et vos objectifs pour définir la meilleure stratégie.",
+      "order": 1
+    },
+    {
+      "number": "02",
+      "title": "Conception et développement",
+      "description": "Je donne vie à votre vision grâce à un design moderne et un développement performant, pour un site à la fois esthétique, rapide et efficace.",
+      "order": 2
+    },
+    {
+      "number": "03",
+      "title": "Lancement et optimisation",
+      "description": "Une fois le site lancé, j'effectue les derniers ajustements et optimisations afin d'assurer de bonnes performances, une navigation fluide et une meilleure conversion.",
+      "order": 3
+    },
+    {
+      "number": "04",
+      "title": "Suivi",
+      "description": "J'accompagne le client après la mise en ligne pour ajuster et améliorer le site dans la durée.",
+      "order": 4
+    }
+  ]
+}

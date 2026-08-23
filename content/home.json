@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "eyebrow": "Boost Web Agency",
+    "title_line1": "Attirez plus de clients",
+    "title_highlight": "avec un site web",
+    "title_line2": "qui convertit",
+    "description": "Boost Web Agency crée des sites modernes, rapides, responsives et optimisés pour aider les entreprises à développer leur présence en ligne.",
+    "cta_primary_text": "Travaillons ensemble",
+    "cta_primary_link": "appliquer.html",
+    "cta_secondary_text": "Voir mes projets",
+    "cta_secondary_link": "portfolio.html"
+  },
+  "services_intro": {
+    "eyebrow": "Mes services",
+    "title": "Des services conçus pour développer votre présence en ligne",
+    "description": "Des solutions modernes de création web pensées pour renforcer votre image de marque et transformer vos visiteurs en clients."
+  },
+  "process_intro": {
+    "eyebrow": "Mon processus",
+    "title": "Comment je transforme vos idées en un site web professionnel"
+  },
+  "portfolio_intro": {
+    "eyebrow": "Mes réalisations",
+    "title": "Découvrez quelques projets que j'ai réalisés pour mes clients"
+  },
+  "about_preview": {
+    "eyebrow": "À propos de moi",
+    "title": "Un partenaire pour faire grandir votre présence en ligne",
+    "paragraph1": "Je suis spécialisé dans la création de sites web modernes et performants. Mon objectif est simple : aider les entrepreneurs et les entreprises à attirer plus de clients grâce à une présence en ligne efficace.",
+    "paragraph2": "Chaque projet est conçu avec une approche stratégique, en combinant design, performance et expérience utilisateur.",
+    "cta_text": "Lance ton projet maintenant",
+    "cta_link": "appliquer.html"
+  },
+  "testimonials_intro": {
+    "eyebrow": "Témoignages",
+    "title": "Ce que mes clients disent de notre collaboration"
+  },
+  "faq_intro": {
+    "eyebrow": "FAQ",
+    "title": "Questions fréquentes"
+  },
+  "final_cta": {
+    "title": "Vous voulez lancer votre projet mais vous ne savez pas par où commencer ?",
+    "description": "Répondez à quelques questions pour déterminer la meilleure solution pour votre projet.",
+    "button_text": "Commencer mon projet",
+    "button_link": "appliquer.html"
+  }
+}

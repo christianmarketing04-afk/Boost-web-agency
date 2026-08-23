@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Boost Web Agency</title>
+<meta name="description" content="Découvrez les projets réalisés par Boost Web Agency pour ses clients.">
+<link rel="icon" href="assets/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<main>
+  <section class="page-hero">
+    <div class="aurora" style="opacity:.5"></div>
+    <div class="container">
+      <div class="eyebrow reveal">Mes réalisations</div>
+      <h1 class="reveal">Découvrez quelques projets que j'ai réalisés pour mes clients</h1>
+      <p class="reveal reveal-delay-1">Chaque projet est pensé sur mesure, en fonction des objectifs et de l'identité du client.</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="filters reveal" id="filters"></div>
+      <div class="grid grid-3" id="portfolioGrid"></div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Votre projet pourrait être le prochain</h2>
+        <p>Parlons de vos objectifs et voyons comment vous aider à convertir plus de visiteurs.</p>
+        <a href="appliquer.html" class="btn btn-primary">Démarrer mon projet</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/content.js"></script>
+<script>
+  renderHeader('portfolio.html');
+  renderFooter();
+  (async ()=>{
+    const portfolio = await Content.load('content/portfolio.json');
+    const items = portfolio.items.filter(p=>p.visible !== false).sort((a,b)=>a.order-b.order);
+    renderPortfolioCards(items, 'portfolioGrid');
+
+    const categories = ['Tous', ...new Set(items.map(i=>i.category))];
+    const filtersEl = document.getElementById('filters');
+    filtersEl.innerHTML = categories.map((c,i)=>`<button class="filter-btn ${i===0?'active':''}" data-cat="${c}">${c}</button>`).join('');
+    filtersEl.addEventListener('click', (e)=>{
+      const btn = e.target.closest('.filter-btn');
+      if(!btn) return;
+      filtersEl.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      const filtered = cat === 'Tous' ? items : items.filter(i=>i.category===cat);
+      renderPortfolioCards(filtered, 'portfolioGrid');
+    });
+  })();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

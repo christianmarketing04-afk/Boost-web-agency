@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Boost Web Agency</title>
+<meta name="description" content="Contactez Boost Web Agency pour discuter de votre projet de site web.">
+<link rel="icon" href="assets/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<main>
+  <section class="page-hero">
+    <div class="aurora" style="opacity:.5"></div>
+    <div class="container">
+      <div class="eyebrow reveal">Contact</div>
+      <h1 class="reveal">Parlons de votre entreprise</h1>
+      <p class="reveal reveal-delay-1">Vous avez une question ou vous êtes prêt à vous lancer ? Contactez-moi directement ou remplissez le formulaire, je reviens vers vous rapidement.</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="reveal">
+          <h3 style="font-size:20px;margin-bottom:16px">Moyens de contact</h3>
+          <div class="contact-methods" id="contactMethods"></div>
+          <div class="card" style="margin-top:24px">
+            <p style="margin:0 0 10px;color:var(--text);font-weight:600">Besoin d'un devis rapide ?</p>
+            <p style="margin:0 0 18px">Passez par le formulaire de qualification, c'est plus rapide.</p>
+            <a href="appliquer.html" class="btn btn-primary btn-block">Démarrer mon projet</a>
+          </div>
+        </div>
+
+        <form class="form-card reveal reveal-delay-1" id="contactForm">
+          <div class="field">
+            <label>Nom complet <span class="req">*</span></label>
+            <input type="text" name="name" required>
+          </div>
+          <div class="field">
+            <label>Email <span class="req">*</span></label>
+            <input type="email" name="email" required>
+          </div>
+          <div class="grid grid-2" style="gap:20px">
+            <div class="field">
+              <label>Téléphone</label>
+              <input type="tel" name="phone">
+            </div>
+            <div class="field">
+              <label>Entreprise</label>
+              <input type="text" name="company">
+            </div>
+          </div>
+          <div class="field">
+            <label>Message <span class="req">*</span></label>
+            <textarea name="message" required placeholder="Parlez-moi de votre projet..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
+          <p id="formStatus" style="margin-top:14px;font-size:13.5px;text-align:center"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/content.js"></script>
+<script>
+  renderHeader('contact.html');
+  renderFooter();
+  (async ()=>{
+    const settings = await Content.load('content/settings.json');
+    document.getElementById('contactMethods').innerHTML = `
+      <a class="contact-method" href="mailto:${settings.contact_email}">
+        <div class="icon-badge">${ICONS.check}</div>
+        <div><div class="contact-method-label">Email</div><div class="contact-method-value">${settings.contact_email}</div></div>
+      </a>
+      <a class="contact-method" href="${settings.whatsapp_link}" target="_blank" rel="noopener">
+        <div class="icon-badge">${ICONS.whatsapp}</div>
+        <div><div class="contact-method-label">WhatsApp</div><div class="contact-method-value">${settings.whatsapp_number}</div></div>
+      </a>
+      ${settings.instagram_link ? `
+      <a class="contact-method" href="${settings.instagram_link}" target="_blank" rel="noopener">
+        <div class="icon-badge">${ICONS.instagram}</div>
+        <div><div class="contact-method-label">Instagram</div><div class="contact-method-value">@boostwebagency</div></div>
+      </a>` : ''}
+    `;
+
+    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const f = e.target;
+      const data = new FormData(f);
+      const msg = `Nouveau message — Boost Web Agency\nNom: ${data.get('name')}\nEmail: ${data.get('email')}\nTéléphone: ${data.get('phone')||'—'}\nEntreprise: ${data.get('company')||'—'}\nMessage: ${data.get('message')}`;
+      window.open(`${settings.whatsapp_link}?text=${encodeURIComponent(msg)}`, '_blank');
+      document.getElementById('formStatus').textContent = 'Merci ! Votre message va s’ouvrir dans WhatsApp.';
+      f.reset();
+    });
+  })();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

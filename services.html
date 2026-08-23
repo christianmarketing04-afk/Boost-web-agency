@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Boost Web Agency</title>
+<meta name="description" content="Création de sites web, identité visuelle et optimisation des performances : découvrez les services de Boost Web Agency.">
+<link rel="icon" href="assets/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<main>
+  <section class="page-hero">
+    <div class="aurora" style="opacity:.5"></div>
+    <div class="container">
+      <div class="eyebrow reveal">Mes services</div>
+      <h1 class="reveal">Des services conçus pour développer votre présence en ligne</h1>
+      <p class="reveal reveal-delay-1">Des solutions modernes de création web pensées pour renforcer votre image de marque et transformer vos visiteurs en clients.</p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="grid grid-3" id="servicesOverview"></div>
+    </div>
+  </section>
+
+  <section class="section" id="serviceDetails">
+    <div class="container" id="serviceDetailsMount"></div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Prêt à donner vie à votre projet ?</h2>
+        <p>Décrivez votre besoin en quelques minutes et recevez une réponse rapide.</p>
+        <a href="appliquer.html" class="btn btn-primary">Démarrer mon projet</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/content.js"></script>
+<script>
+  renderHeader('services.html');
+  renderFooter();
+  (async ()=>{
+    const services = await Content.load('content/services.json');
+    renderServiceCards(services.items, 'servicesOverview');
+
+    const mount = document.getElementById('serviceDetailsMount');
+    mount.innerHTML = services.items.sort((a,b)=>a.order-b.order).map(s=>`
+      <div class="service-detail reveal">
+        <div class="service-detail-media">${ICONS[s.icon] || ICONS.layout}</div>
+        <div class="service-detail-body">
+          <div class="eyebrow">${s.title}</div>
+          <h2 style="font-size:26px">${s.title}</h2>
+          <p>${s.description}</p>
+          <p style="font-weight:600;color:var(--text);margin-bottom:6px">Avantages</p>
+          <ul>${(s.advantages||[]).map(a=>`<li>${ICONS.check}${a}</li>`).join('')}</ul>
+          <p style="font-weight:600;color:var(--text);margin:20px 0 6px">Ce que ça inclut</p>
+          <ul>${(s.features||[]).map(f=>`<li>${ICONS.check}${f}</li>`).join('')}</ul>
+        </div>
+      </div>`).join('');
+    observeReveals();
+  })();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

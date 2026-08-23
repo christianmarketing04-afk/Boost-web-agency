@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "icon": "layout",
+      "title": "Création de Sites Web",
+      "short_description": "Des expériences digitales sur mesure qui reflètent votre entreprise et attirent davantage de clients.",
+      "description": "Des sites vitrines modernes, rapides, responsives et conçus pour convertir vos visiteurs en clients. Chaque site est pensé pour votre secteur d'activité et vos objectifs business.",
+      "advantages": [
+        "Design sur mesure adapté à votre marque",
+        "Structure pensée pour la conversion",
+        "Contenu organisé et facile à faire évoluer"
+      ],
+      "features": [
+        "Sites vitrines et landing pages",
+        "Formulaires de contact et prise de rendez-vous",
+        "Intégration WhatsApp et réseaux sociaux"
+      ],
+      "order": 1
+    },
+    {
+      "icon": "palette",
+      "title": "Identité Visuelle & Design",
+      "short_description": "Une image de marque cohérente et professionnelle qui permet à votre entreprise de se démarquer.",
+      "description": "Création d'une identité visuelle cohérente et d'interfaces modernes adaptées à votre marque, pour que chaque point de contact avec vos clients reflète votre professionnalisme.",
+      "advantages": [
+        "Charte graphique cohérente",
+        "Interfaces modernes et lisibles",
+        "Une image qui inspire confiance"
+      ],
+      "features": [
+        "Palette de couleurs et typographie",
+        "Composants UI réutilisables",
+        "Déclinaison logo et supports numériques"
+      ],
+      "order": 2
+    },
+    {
+      "icon": "rocket",
+      "title": "Optimisation des Performances",
+      "short_description": "Des sites rapides et optimisés pour offrir une meilleure expérience utilisateur et améliorer votre visibilité en ligne.",
+      "description": "Optimisation de la vitesse, de l'expérience utilisateur, du référencement et des performances générales, pour que votre site charge vite et se positionne bien sur les moteurs de recherche.",
+      "advantages": [
+        "Temps de chargement réduit",
+        "Meilleur référencement naturel",
+        "Expérience fluide sur tous les écrans"
+      ],
+      "features": [
+        "Optimisation des images et du code",
+        "Responsive mobile, tablette, desktop",
+        "Suivi et ajustements post-lancement"
+      ],
+      "order": 3
+    }
+  ]
+}

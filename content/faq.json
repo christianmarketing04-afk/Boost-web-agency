@@ -1,0 +1,10 @@
+{
+  "items": [
+    { "question": "Combien coûte un site web ?", "answer": "Le prix dépend de vos besoins. Chaque projet est unique, c'est pourquoi je propose un devis personnalisé.", "order": 1, "visible": true },
+    { "question": "Combien de temps prend un projet ?", "answer": "En général, entre 6 à 7 jours selon la complexité.", "order": 2, "visible": true },
+    { "question": "Est-ce que le site sera responsive ?", "answer": "Oui, tous les sites sont optimisés pour mobile, tablette et ordinateur.", "order": 3, "visible": true },
+    { "question": "Puis-je modifier mon site moi-même ?", "answer": "Oui, vous aurez un accès complet et je peux vous accompagner si besoin.", "order": 4, "visible": true },
+    { "question": "Proposez-vous un suivi après la mise en ligne ?", "answer": "Oui, je propose un accompagnement pour améliorer les performances du site.", "order": 5, "visible": true },
+    { "question": "Travaillez-vous avec des entreprises à distance ?", "answer": "Oui, je travaille avec des clients partout en Haïti et à l'international, entièrement à distance.", "order": 6, "visible": true }
+  ]
+}

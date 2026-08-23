@@ -1,0 +1,231 @@
+backend:
+  name: github
+  repo: VOTRE-COMPTE/VOTRE-REPO   # ⚠️ à remplacer par ton repo GitHub, ex: jean/boost-web-agency
+  branch: main
+
+# Sur Netlify, publish_mode + Identity/Git Gateway ne sont pas nécessaires
+# puisqu'on utilise le backend "github" avec OAuth (voir instructions de déploiement).
+
+media_folder: "assets/images/uploads"
+public_folder: "assets/images/uploads"
+
+locale: "fr"
+
+collections:
+
+  # =========================================================
+  # 📊 PAGE D'ACCUEIL
+  # =========================================================
+  - name: "accueil"
+    label: "🏠 Page d'accueil"
+    files:
+
+      - name: "hero"
+        label: "Hero"
+        file: "content/home.json"
+        fields:
+          - { label: "Petit texte au-dessus du titre", name: "hero.eyebrow", widget: "string" }
+          - { label: "Titre — ligne 1", name: "hero.title_line1", widget: "string" }
+          - { label: "Titre — mot mis en avant", name: "hero.title_highlight", widget: "string" }
+          - { label: "Titre — ligne 2", name: "hero.title_line2", widget: "string" }
+          - { label: "Description", name: "hero.description", widget: "text" }
+          - { label: "Texte du bouton principal", name: "hero.cta_primary_text", widget: "string" }
+          - { label: "Lien du bouton principal", name: "hero.cta_primary_link", widget: "string" }
+          - { label: "Texte du bouton secondaire", name: "hero.cta_secondary_text", widget: "string" }
+          - { label: "Lien du bouton secondaire", name: "hero.cta_secondary_link", widget: "string" }
+          - { label: "Introduction — Services", name: "services_intro", widget: "object", collapsed: true, fields: [
+              { label: "Petit label", name: "eyebrow", widget: "string" },
+              { label: "Titre", name: "title", widget: "string" },
+              { label: "Description", name: "description", widget: "text" }
+            ]}
+          - { label: "Introduction — Processus", name: "process_intro", widget: "object", collapsed: true, fields: [
+              { label: "Petit label", name: "eyebrow", widget: "string" },
+              { label: "Titre", name: "title", widget: "string" }
+            ]}
+          - { label: "Introduction — Portfolio", name: "portfolio_intro", widget: "object", collapsed: true, fields: [
+              { label: "Petit label", name: "eyebrow", widget: "string" },
+              { label: "Titre", name: "title", widget: "string" }
+            ]}
+          - { label: "Aperçu — À propos", name: "about_preview", widget: "object", collapsed: true, fields: [
+              { label: "Petit label", name: "eyebrow", widget: "string" },
+              { label: "Titre", name: "title", widget: "string" },
+              { label: "Paragraphe 1", name: "paragraph1", widget: "text" },
+              { label: "Paragraphe 2", name: "paragraph2", widget: "text" },
+              { label: "Texte du bouton", name: "cta_text", widget: "string" },
+              { label: "Lien du bouton", name: "cta_link", widget: "string" }
+            ]}
+          - { label: "Introduction — Témoignages", name: "testimonials_intro", widget: "object", collapsed: true, fields: [
+              { label: "Petit label", name: "eyebrow", widget: "string" },
+              { label: "Titre", name: "title", widget: "string" }
+            ]}
+          - { label: "Introduction — FAQ", name: "faq_intro", widget: "object", collapsed: true, fields: [
+              { label: "Petit label", name: "eyebrow", widget: "string" },
+              { label: "Titre", name: "title", widget: "string" }
+            ]}
+          - { label: "CTA final", name: "final_cta", widget: "object", collapsed: true, fields: [
+              { label: "Titre", name: "title", widget: "string" },
+              { label: "Description", name: "description", widget: "text" },
+              { label: "Texte du bouton", name: "button_text", widget: "string" },
+              { label: "Lien du bouton", name: "button_link", widget: "string" }
+            ]}
+
+      - name: "services"
+        label: "Services"
+        file: "content/services.json"
+        fields:
+          - label: "Liste des services"
+            name: "items"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Icône", name: "icon", widget: "select", options: ["layout", "palette", "rocket"] }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Description courte (page d'accueil)", name: "short_description", widget: "text" }
+              - { label: "Description complète (page Services)", name: "description", widget: "text" }
+              - { label: "Avantages", name: "advantages", widget: "list", field: { label: "Avantage", name: "item", widget: "string" } }
+              - { label: "Fonctionnalités incluses", name: "features", widget: "list", field: { label: "Fonctionnalité", name: "item", widget: "string" } }
+              - { label: "Ordre d'affichage", name: "order", widget: "number", value_type: "int" }
+
+      - name: "process"
+        label: "Processus"
+        file: "content/process.json"
+        fields:
+          - label: "Étapes"
+            name: "items"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Numéro affiché", name: "number", widget: "string", hint: "Exemple : 01" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Ordre d'affichage", name: "order", widget: "number", value_type: "int" }
+
+      - name: "portfolio"
+        label: "Portfolio"
+        file: "content/portfolio.json"
+        fields:
+          - label: "Projets"
+            name: "items"
+            widget: "list"
+            summary: "{{name}}"
+            fields:
+              - { label: "Image principale affichée dans la carte Portfolio", name: "image", widget: "image" }
+              - { label: "Nom du projet", name: "name", widget: "string" }
+              - { label: "Catégorie", name: "category", widget: "string" }
+              - { label: "Courte description", name: "description", widget: "text" }
+              - { label: "Objectif du projet", name: "objective", widget: "text", required: false }
+              - { label: "Problème rencontré", name: "problem", widget: "text", required: false }
+              - { label: "Solution apportée", name: "solution", widget: "text", required: false }
+              - { label: "Résultat", name: "result", widget: "text", required: false }
+              - { label: "Technologies utilisées", name: "technologies", widget: "string", required: false }
+              - { label: "URL du projet", name: "url", widget: "string", required: false }
+              - { label: "Afficher ce projet sur le site", name: "visible", widget: "boolean", default: true }
+              - { label: "Ordre d'affichage", name: "order", widget: "number", value_type: "int" }
+
+      - name: "temoignages"
+        label: "Témoignages"
+        file: "content/testimonials.json"
+        fields:
+          - label: "Témoignages"
+            name: "items"
+            widget: "list"
+            summary: "{{name}}"
+            fields:
+              - { label: "Nom du client", name: "name", widget: "string" }
+              - { label: "Fonction ou entreprise", name: "role", widget: "string" }
+              - { label: "Photo / avatar", name: "avatar", widget: "image", required: false }
+              - { label: "Note (sur 5)", name: "rating", widget: "number", value_type: "int", min: 1, max: 5, default: 5 }
+              - { label: "Commentaire", name: "comment", widget: "text" }
+              - { label: "Afficher ce témoignage", name: "visible", widget: "boolean", default: true }
+              - { label: "Ordre d'affichage", name: "order", widget: "number", value_type: "int" }
+
+      - name: "faq"
+        label: "FAQ"
+        file: "content/faq.json"
+        fields:
+          - label: "Questions fréquentes"
+            name: "items"
+            widget: "list"
+            summary: "{{question}}"
+            fields:
+              - { label: "Question", name: "question", widget: "string" }
+              - { label: "Réponse", name: "answer", widget: "text" }
+              - { label: "Afficher cette question", name: "visible", widget: "boolean", default: true }
+              - { label: "Ordre d'affichage", name: "order", widget: "number", value_type: "int" }
+
+  # =========================================================
+  # 👤 PAGE À PROPOS
+  # =========================================================
+  - name: "a-propos"
+    label: "👤 Page À propos"
+    files:
+      - name: "about"
+        label: "Contenu de la page"
+        file: "content/about.json"
+        fields:
+          - { label: "Petit label", name: "eyebrow", widget: "string" }
+          - { label: "Titre", name: "title", widget: "string" }
+          - { label: "Texte d'introduction", name: "intro", widget: "text" }
+          - { label: "Titre — Mon approche", name: "approach_title", widget: "string" }
+          - { label: "Texte — Mon approche", name: "approach_text", widget: "text" }
+          - { label: "Titre — Ma façon de travailler", name: "way_title", widget: "string" }
+          - { label: "Texte — Ma façon de travailler", name: "way_text", widget: "text" }
+          - label: "Valeurs"
+            name: "values"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - { label: "Titre — Pourquoi travailler avec moi", name: "why_title", widget: "string" }
+          - { label: "Texte — Pourquoi travailler avec moi", name: "why_text", widget: "text" }
+
+  # =========================================================
+  # ⚙️ PARAMÈTRES DU SITE
+  # =========================================================
+  - name: "parametres"
+    label: "⚙️ Paramètres du site"
+    files:
+
+      - name: "informations-generales"
+        label: "Informations générales"
+        file: "content/settings.json"
+        fields:
+          - { label: "Nom du site", name: "site_name", widget: "string" }
+          - { label: "Logo", name: "logo", widget: "image" }
+          - { label: "Favicon", name: "favicon", widget: "image", required: false }
+          - { label: "URL du site", name: "site_url", widget: "string" }
+          - { label: "Texte du footer", name: "footer_text", widget: "text" }
+          - { label: "Texte de copyright", name: "copyright", widget: "string" }
+
+      - name: "contact-reseaux"
+        label: "Contact & réseaux sociaux"
+        file: "content/settings.json"
+        fields:
+          - { label: "Email de contact", name: "contact_email", widget: "string" }
+          - { label: "Numéro WhatsApp (affiché)", name: "whatsapp_number", widget: "string" }
+          - { label: "Lien WhatsApp (wa.me/...)", name: "whatsapp_link", widget: "string", hint: "Exemple : https://wa.me/50934567890" }
+          - { label: "Lien Instagram", name: "instagram_link", widget: "string", required: false }
+          - { label: "Lien Facebook", name: "facebook_link", widget: "string", required: false }
+
+  # =========================================================
+  # 🧭 NAVIGATION
+  # =========================================================
+  - name: "navigation"
+    label: "🧭 Navigation"
+    files:
+      - name: "menu"
+        label: "Menu du site"
+        file: "content/navigation.json"
+        fields:
+          - label: "Éléments du menu"
+            name: "items"
+            widget: "list"
+            summary: "{{label}}"
+            fields:
+              - { label: "Texte affiché", name: "label", widget: "string" }
+              - { label: "Lien", name: "link", widget: "string" }
+              - { label: "Ordre d'affichage", name: "order", widget: "number", value_type: "int" }
+              - { label: "Visible dans le menu", name: "visible", widget: "boolean", default: true }
+          - { label: "Texte du bouton d'action", name: "cta_label", widget: "string" }
+          - { label: "Lien du bouton d'action", name: "cta_link", widget: "string" }

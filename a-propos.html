@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — Boost Web Agency</title>
+<meta name="description" content="Découvrez Boost Web Agency, mon approche, mes valeurs et pourquoi travailler avec moi pour votre site web.">
+<link rel="icon" href="assets/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="site-header"></header>
+
+<main>
+  <section class="page-hero">
+    <div class="aurora" style="opacity:.5"></div>
+    <div class="container">
+      <div class="eyebrow reveal" id="aboutEyebrow"></div>
+      <h1 class="reveal" id="aboutTitle"></h1>
+      <p class="reveal reveal-delay-1" id="aboutIntro"></p>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="grid grid-2">
+        <div class="card reveal">
+          <h3 id="approachTitle" style="font-size:20px"></h3>
+          <p id="approachText"></p>
+        </div>
+        <div class="card reveal reveal-delay-1">
+          <h3 id="wayTitle" style="font-size:20px"></h3>
+          <p id="wayText"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Mes valeurs</div>
+        <h2>Ce qui guide chaque projet</h2>
+      </div>
+      <div class="grid grid-3" id="valuesGrid"></div>
+    </div>
+  </section>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2 id="whyTitle"></h2>
+        <p id="whyText"></p>
+        <a href="appliquer.html" class="btn btn-primary">Travaillons ensemble</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/content.js"></script>
+<script>
+  renderHeader('a-propos.html');
+  renderFooter();
+  (async ()=>{
+    const about = await Content.load('content/about.json');
+    document.getElementById('aboutEyebrow').textContent = about.eyebrow;
+    document.getElementById('aboutTitle').textContent = about.title;
+    document.getElementById('aboutIntro').textContent = about.intro;
+    document.getElementById('approachTitle').textContent = about.approach_title;
+    document.getElementById('approachText').textContent = about.approach_text;
+    document.getElementById('wayTitle').textContent = about.way_title;
+    document.getElementById('wayText').textContent = about.way_text;
+    document.getElementById('whyTitle').textContent = about.why_title;
+    document.getElementById('whyText').textContent = about.why_text;
+    document.getElementById('valuesGrid').innerHTML = about.values.map((v,i)=>`
+      <div class="card value-card reveal reveal-delay-${(i%3)+1}">
+        <div class="icon-badge">${ICONS.check}</div>
+        <h4>${v.title}</h4>
+        <p>${v.description}</p>
+      </div>`).join('');
+    observeReveals();
+  })();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

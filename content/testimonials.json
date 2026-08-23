@@ -1,0 +1,31 @@
+{
+  "items": [
+    {
+      "name": "Client",
+      "role": "Client de restaurant",
+      "avatar": "",
+      "rating": 5,
+      "comment": "Un travail professionnel du début à la fin. Le site est rapide, moderne et m'a aidé à attirer plus de clients.",
+      "order": 1,
+      "visible": true
+    },
+    {
+      "name": "Propriétaire",
+      "role": "Propriétaire d'entreprise",
+      "avatar": "",
+      "rating": 5,
+      "comment": "Très satisfait du design et de la communication. Je recommande vivement !",
+      "order": 2,
+      "visible": true
+    },
+    {
+      "name": "Entrepreneur",
+      "role": "Entrepreneur créatif",
+      "avatar": "",
+      "rating": 5,
+      "comment": "Une vraie expertise. Le site correspond parfaitement à mes attentes.",
+      "order": 3,
+      "visible": true
+    }
+  ]
+}
