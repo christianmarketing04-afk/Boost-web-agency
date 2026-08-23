@@ -19,6 +19,22 @@
 
       <div class="apply-wrap reveal" id="applyForm">
 
+        <!-- Formulaire caché : sert uniquement à ce que Netlify Forms
+             détecte et enregistre les champs. Le vrai formulaire visible
+             (multi-étapes) est plus bas ; son JS envoie les données ici. -->
+        <form name="appliquer" data-netlify="true" netlify-honeypot="bot-field" hidden>
+          <input type="text" name="siteType">
+          <input type="text" name="goal">
+          <input type="text" name="features">
+          <input type="text" name="hasSite">
+          <input type="text" name="timeline">
+          <input type="text" name="name">
+          <input type="email" name="email">
+          <input type="text" name="phone">
+          <input type="text" name="city">
+          <input name="bot-field">
+        </form>
+
         <!-- SIDE PANEL -->
         <aside class="apply-side">
           <div class="eyebrow" style="background:rgba(91,157,255,.15);border-color:rgba(91,157,255,.3)">Boost Web Agency</div>

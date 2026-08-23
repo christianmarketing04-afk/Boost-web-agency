@@ -190,20 +190,41 @@
     try{
       const settings = await Content.load('content/settings.json');
       const d = state.data;
+      const netlifyPayload = {
+        'form-name': 'appliquer',
+        siteType: d.siteType === 'Autre' ? d.siteTypeOther : d.siteType,
+        goal: d.goal === 'Autre' ? d.goalOther : d.goal,
+        features: d.features.map(f=> f==='Autre' ? d.featuresOther : f).join(', ') || '—',
+        hasSite: d.hasSite,
+        timeline: d.timeline,
+        name: d.name,
+        email: d.email,
+        phone: d.phone,
+        city: d.city || '—'
+      };
+
+      // 1) Enregistre la demande dans Netlify Forms (visible dans ton
+      //    tableau de bord Netlify > Forms, notification email possible).
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(netlifyPayload).toString()
+      }).catch(err => console.error('Netlify Forms', err));
+
+      // 2) Ouvre aussi WhatsApp avec la demande pré-remplie.
       const lines = [
         `Nouvelle demande de projet — Boost Web Agency`,
-        `Type de site: ${d.siteType === 'Autre' ? d.siteTypeOther : d.siteType}`,
-        `Objectif: ${d.goal === 'Autre' ? d.goalOther : d.goal}`,
-        `Fonctionnalités: ${d.features.map(f=> f==='Autre' ? d.featuresOther : f).join(', ') || '—'}`,
-        `Site existant: ${d.hasSite}`,
-        `Lancement souhaité: ${d.timeline}`,
-        `Nom: ${d.name}`,
-        `Email: ${d.email}`,
-        `Téléphone: ${d.phone}`,
-        `Ville/Pays: ${d.city || '—'}`
+        `Type de site: ${netlifyPayload.siteType}`,
+        `Objectif: ${netlifyPayload.goal}`,
+        `Fonctionnalités: ${netlifyPayload.features}`,
+        `Site existant: ${netlifyPayload.hasSite}`,
+        `Lancement souhaité: ${netlifyPayload.timeline}`,
+        `Nom: ${netlifyPayload.name}`,
+        `Email: ${netlifyPayload.email}`,
+        `Téléphone: ${netlifyPayload.phone}`,
+        `Ville/Pays: ${netlifyPayload.city}`
       ].join('\n');
       const waLink = `${settings.whatsapp_link}?text=${encodeURIComponent(lines)}`;
-      // Ouvre WhatsApp avec le message pré-rempli pour transmettre la demande.
       window.open(waLink, '_blank');
     }catch(err){ console.error('Envoi impossible', err); }
   }

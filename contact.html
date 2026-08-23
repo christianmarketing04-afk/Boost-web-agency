@@ -36,7 +36,11 @@
           </div>
         </div>
 
-        <form class="form-card reveal reveal-delay-1" id="contactForm">
+        <form class="form-card reveal reveal-delay-1" id="contactForm" name="contact" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="display:none">
+            <label>Ne pas remplir : <input name="bot-field"></label>
+          </p>
           <div class="field">
             <label>Nom complet <span class="req">*</span></label>
             <input type="text" name="name" required>
@@ -95,9 +99,19 @@
       e.preventDefault();
       const f = e.target;
       const data = new FormData(f);
+
+      // 1) Enregistre le message dans Netlify Forms (visible dans ton tableau
+      //    de bord Netlify > Forms, avec notification email si tu l'actives).
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      }).catch(err => console.error('Netlify Forms', err));
+
+      // 2) Ouvre aussi WhatsApp avec le message pré-rempli, pour une réponse rapide.
       const msg = `Nouveau message — Boost Web Agency\nNom: ${data.get('name')}\nEmail: ${data.get('email')}\nTéléphone: ${data.get('phone')||'—'}\nEntreprise: ${data.get('company')||'—'}\nMessage: ${data.get('message')}`;
       window.open(`${settings.whatsapp_link}?text=${encodeURIComponent(msg)}`, '_blank');
-      document.getElementById('formStatus').textContent = 'Merci ! Votre message va s’ouvrir dans WhatsApp.';
+      document.getElementById('formStatus').textContent = 'Merci ! Votre message a été enregistré, et WhatsApp va s’ouvrir.';
       f.reset();
     });
   })();

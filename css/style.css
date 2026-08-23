@@ -143,13 +143,16 @@ button{ font-family:inherit; cursor:pointer; }
 /* ---------- Header / Nav ---------- */
 .site-header{
   position: sticky; top:0; z-index: 100;
-  background: rgba(5,7,13,0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--bg-elevated);
   border-bottom: 1px solid var(--border);
   transition: background .35s var(--ease), border-color .35s var(--ease);
 }
-[data-theme="light"] .site-header{ background: rgba(247,248,252,0.78); }
+/* Remarque technique : on évite volontairement "backdrop-filter" ici.
+   Un ancêtre avec filter/backdrop-filter devient le "containing block" de
+   ses enfants position:fixed — ça cassait le panneau de menu mobile
+   (.nav-links), qui se retrouvait coincé dans la hauteur du header au
+   lieu de couvrir l'écran. Un fond opaque garde aussi un header
+   parfaitement identique sur toutes les pages, y compris l'accueil. */
 
 .nav{
   display:flex; align-items:center; justify-content:space-between;
@@ -168,6 +171,7 @@ button{ font-family:inherit; cursor:pointer; }
   background: var(--gradient-primary); border-radius:2px;
 }
 .nav-actions{ display:flex; align-items:center; gap:14px; }
+.nav-cta-mobile{ display:none; } /* visible uniquement dans le panneau mobile, voir media query */
 
 .theme-toggle{
   width:38px; height:38px; border-radius:50%;
@@ -197,10 +201,11 @@ button{ font-family:inherit; cursor:pointer; }
     background: var(--bg); flex-direction:column; justify-content:flex-start;
     padding: 32px 24px; gap: 22px; transform: translateX(100%);
     transition: transform .35s var(--ease); overflow-y:auto;
+    z-index: 90;
   }
   .nav-links.is-open{ transform: translateX(0); }
   .nav-links a{ font-size:19px; }
-  .nav-cta-mobile{ margin-top: 12px; }
+  .nav-cta-mobile{ display:inline-flex; margin-top: 12px; }
   .nav-toggle{ display:flex; }
   .nav-actions .btn{ display:none; }
 }
@@ -489,14 +494,18 @@ button{ font-family:inherit; cursor:pointer; }
 .choice-card input{ display:none; }
 .choice-card .choice-title{ font-weight:600; font-size:14.5px; display:flex; align-items:center; justify-content:space-between; }
 .choice-card .choice-desc{ font-size:12.5px; color: var(--text-faint); margin-top:4px; }
-.choice-card .dot{ width:16px; height:16px; border-radius:50%; border:2px solid var(--border-strong); flex-shrink:0; position:relative; }
-.choice-card input:checked ~ .dot, .choice-card .dot.checked{ border-color: var(--blue-light); }
-.choice-card input:checked ~ .dot::after, .choice-card .dot.checked::after{
+.choice-card .dot{ width:16px; height:16px; border-radius:50%; border:2px solid var(--border-strong); flex-shrink:0; position:relative; transition: border-color .2s var(--ease); }
+.choice-card .dot::after{
   content:''; position:absolute; inset:3px; background: var(--blue-light); border-radius:50%;
+  opacity:0; transform: scale(.4); transition: opacity .2s var(--ease), transform .2s var(--ease);
 }
+/* Le JS applique la classe "selected" sur la carte (pas sur un input caché,
+   il n'y en a pas dans le HTML) : le cercle doit donc réagir à .selected. */
 .choice-card.selected{ border-color: var(--blue-light); background: rgba(91,157,255,0.08); box-shadow: 0 0 0 3px rgba(91,157,255,0.12); }
+.choice-card.selected .dot{ border-color: var(--blue-light); }
+.choice-card.selected .dot::after{ opacity:1; transform: scale(1); }
 .choice-card[data-multi] .dot{ border-radius:5px; }
-.choice-card[data-multi] input:checked ~ .dot::after, .choice-card[data-multi] .dot.checked::after{ border-radius:2px; }
+.choice-card[data-multi] .dot::after{ border-radius:2px; }
 
 .step-actions{ display:flex; justify-content:space-between; gap:14px; margin-top: 32px; }
 .step-actions .btn{ min-width:130px; }
