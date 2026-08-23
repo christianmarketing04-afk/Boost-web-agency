@@ -204,7 +204,7 @@ collections:
         fields:
           - { label: "Email de contact", name: "contact_email", widget: "string" }
           - { label: "Numéro WhatsApp (affiché)", name: "whatsapp_number", widget: "string" }
-          - { label: "Lien WhatsApp (wa.me/...)", name: "whatsapp_link", widget: "string", hint: "Exemple : https://wa.me/50934567890" }
+          - { label: "Lien WhatsApp (wa.me/...)", name: "whatsapp_link", widget: "string", hint: "Exemple : https://wa.me/50936000099" }
           - { label: "Lien Instagram", name: "instagram_link", widget: "string", required: false }
           - { label: "Lien Facebook", name: "facebook_link", widget: "string", required: false }
 
