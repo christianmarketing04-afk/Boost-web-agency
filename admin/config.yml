@@ -188,7 +188,7 @@ collections:
     files:
 
       - name: "informations-generales"
-        label: "Contact "
+        label: "Informations générales"
         file: "content/settings.json"
         fields:
           - { label: "Nom du site", name: "site_name", widget: "string" }
