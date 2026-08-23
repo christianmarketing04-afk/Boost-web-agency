@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo:christianmarketing04-afk/Boost-web-agency
+  repo: christianmarketing04-afk/Boost-web-agency
   branch: main
 
 # Sur Netlify, publish_mode + Identity/Git Gateway ne sont pas nécessaires
