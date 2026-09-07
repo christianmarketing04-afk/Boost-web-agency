@@ -1,46 +1,57 @@
 {
   "items": [
     {
-      "image": "assets/images/portfolio/slow-coffee.jpg",
-      "name": "Slow Coffee Shop",
-      "category": "Site vitrine",
-      "description": "Un site warm beige aux tons neutres pour une expérience utilisateur apaisante, pensé pour un café indépendant orienté bien-être.",
-      "objective": "Présenter le café, son menu et ses valeurs, et donner envie de réserver une table.",
-      "problem": "Le café n'avait aucune présence en ligne pour se faire connaître au-delà du bouche-à-oreille.",
-      "solution": "Un site vitrine chaleureux avec menu, valeurs et prise de réservation.",
-      "result": "Une image de marque cohérente et une meilleure visibilité locale.",
       "technologies": "HTML, CSS, JavaScript",
+      "name": "Slow Coffee Shop",
+      "order": 1,
       "url": "",
       "visible": true,
-      "order": 1
+      "objective": "Présenter le café, son menu et ses valeurs, et donner envie de réserver une table.",
+      "solution": "Un site vitrine chaleureux avec menu, valeurs et prise de réservation.",
+      "image": "assets/images/portfolio/slow-coffee.jpg",
+      "description": "Un site warm beige aux tons neutres pour une expérience utilisateur apaisante, pensé pour un café indépendant orienté bien-être.",
+      "result": "Une image de marque cohérente et une meilleure visibilité locale.",
+      "category": "Site vitrine",
+      "problem": "Le café n'avait aucune présence en ligne pour se faire connaître au-delà du bouche-à-oreille."
     },
     {
-      "image": "assets/images/portfolio/coach-jean-fit.png",
-      "name": "Fitness Coach Elite",
-      "category": "Site vitrine",
-      "description": "Un design percutant en rouge sombre optimisé pour la conversion mobile, pensé pour un coach sportif indépendant.",
-      "objective": "Mettre en valeur le coaching personnalisé et pousser à la prise de contact.",
-      "problem": "Le coach avait besoin d'un site professionnel pour crédibiliser son offre de coaching.",
-      "solution": "Un site sombre et percutant, centré sur la transformation physique et les résultats.",
-      "result": "Une présence en ligne professionnelle qui inspire confiance et pousse à l'action.",
       "technologies": "HTML, CSS, JavaScript",
+      "name": "Fitness Coach Elite",
+      "order": 2,
       "url": "https://onlineshopht509.wixsite.com/my-site-2",
       "visible": true,
-      "order": 2
+      "objective": "Mettre en valeur le coaching personnalisé et pousser à la prise de contact.",
+      "solution": "Un site sombre et percutant, centré sur la transformation physique et les résultats.",
+      "image": "assets/images/portfolio/coach-jean-fit.png",
+      "description": "Un design percutant en rouge sombre optimisé pour la conversion mobile, pensé pour un coach sportif indépendant.",
+      "result": "Une présence en ligne professionnelle qui inspire confiance et pousse à l'action.",
+      "category": "Site vitrine",
+      "problem": "Le coach avait besoin d'un site professionnel pour crédibiliser son offre de coaching."
     },
     {
-      "image": "assets/images/portfolio/coin-cadeau.jpg",
-      "name": "Coin Cadeau",
-      "category": "Site e-commerce",
-      "description": "Une maquette unique pour une boutique de cadeaux, pensée pour la vente en ligne en Haïti.",
-      "objective": "Permettre aux clients de trouver facilement le cadeau parfait et de commander en ligne.",
-      "problem": "Le commerce avait besoin d'une vitrine e-commerce claire et rassurante pour vendre en ligne.",
-      "solution": "Une boutique en ligne avec catégories, recherche et mise en avant des garanties (livraison, paiement sécurisé, satisfaction).",
-      "result": "Une expérience d'achat en ligne claire qui inspire confiance aux visiteurs.",
       "technologies": "HTML, CSS, JavaScript",
+      "name": "Coin Cadeau",
+      "order": 3,
       "url": "https://onlineshopht509.wixsite.com/my-site-1",
       "visible": true,
-      "order": 3
+      "objective": "Permettre aux clients de trouver facilement le cadeau parfait et de commander en ligne.",
+      "solution": "Une boutique en ligne avec catégories, recherche et mise en avant des garanties (livraison, paiement sécurisé, satisfaction).",
+      "image": "assets/images/portfolio/coin-cadeau.jpg",
+      "description": "Une maquette unique pour une boutique de cadeaux, pensée pour la vente en ligne en Haïti.",
+      "result": "Une expérience d'achat en ligne claire qui inspire confiance aux visiteurs.",
+      "category": "Site e-commerce",
+      "problem": "Le commerce avait besoin d'une vitrine e-commerce claire et rassurante pour vendre en ligne."
+    },
+    {
+      "technologies": "HTML , CSS , JavaScript",
+      "name": "Sweetiz",
+      "order": 4,
+      "url": "https://sweetizz.netlify.app/",
+      "visible": true,
+      "objective": "Sweetiz imagine et façonne à la main des gâteaux, cupcakes et pâtisseries personnalisés pour chaque occasion — anniversaires, célébrations et grands jours.\n\n",
+      "image": "assets/images/uploads/1000164076.jpg",
+      "description": "Pâtisserie artisanale & sur mesure\n",
+      "category": "Site Vitrine"
     }
   ]
 }
