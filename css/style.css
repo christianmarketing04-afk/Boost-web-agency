@@ -154,9 +154,9 @@ button{ font-family:inherit; cursor:pointer; }
 }
 /* Pas de backdrop-filter ici volontairement : le header est transparent
    en haut de page (fondu avec le Hero), puis devient opaque au scroll
-   via la classe .scrolled ajoutée par js/main.js. Comme on ne touche
-   qu'à background/border/box-shadow (pas de filter), ça ne casse pas
-   le menu mobile en position:fixed. */
+   via la classe .scrolled ajoutée par js/main.js. On ne touche qu'à
+   background/border/box-shadow (pas de "filter"), donc ça ne casse pas
+   le panneau du menu mobile en position:fixed. */
 
 .nav{
   display:flex; align-items:center; justify-content:space-between;
@@ -503,8 +503,6 @@ button{ font-family:inherit; cursor:pointer; }
   content:''; position:absolute; inset:3px; background: var(--blue-light); border-radius:50%;
   opacity:0; transform: scale(.4); transition: opacity .2s var(--ease), transform .2s var(--ease);
 }
-/* Le JS applique la classe "selected" sur la carte (pas sur un input caché,
-   il n'y en a pas dans le HTML) : le cercle doit donc réagir à .selected. */
 .choice-card.selected{ border-color: var(--blue-light); background: rgba(91,157,255,0.08); box-shadow: 0 0 0 3px rgba(91,157,255,0.12); }
 .choice-card.selected .dot{ border-color: var(--blue-light); }
 .choice-card.selected .dot::after{ opacity:1; transform: scale(1); }

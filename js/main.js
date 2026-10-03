@@ -1,4 +1,4 @@
-/* Boost Web Agency — shared behaviour (theme, nav, reveal) */
+/* Boost Web Agency — shared behaviour (theme, nav, reveal, header scroll state) */
 
 (function initTheme(){
   const saved = localStorage.getItem('bwa-theme');
@@ -29,9 +29,6 @@ document.addEventListener('click', (e)=>{
 });
 
 window.addEventListener('DOMContentLoaded', ()=>{
-  document.querySelectorAll('.reveal').forEach(e=>{
-    // in case content.js hasn't attached observers yet for static reveals
-  });
   if(typeof observeReveals === 'function') observeReveals();
 });
 
@@ -43,4 +40,3 @@ function updateHeaderScrollState(){
 }
 window.addEventListener('scroll', updateHeaderScrollState, { passive: true });
 window.addEventListener('DOMContentLoaded', updateHeaderScrollState);
-});
