@@ -143,16 +143,20 @@ button{ font-family:inherit; cursor:pointer; }
 /* ---------- Header / Nav ---------- */
 .site-header{
   position: sticky; top:0; z-index: 100;
-  background: var(--bg-elevated);
-  border-bottom: 1px solid var(--border);
-  transition: background .35s var(--ease), border-color .35s var(--ease);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
 }
-/* Remarque technique : on évite volontairement "backdrop-filter" ici.
-   Un ancêtre avec filter/backdrop-filter devient le "containing block" de
-   ses enfants position:fixed — ça cassait le panneau de menu mobile
-   (.nav-links), qui se retrouvait coincé dans la hauteur du header au
-   lieu de couvrir l'écran. Un fond opaque garde aussi un header
-   parfaitement identique sur toutes les pages, y compris l'accueil. */
+.site-header.scrolled{
+  background: var(--bg-elevated);
+  border-bottom-color: var(--border);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+/* Pas de backdrop-filter ici volontairement : le header est transparent
+   en haut de page (fondu avec le Hero), puis devient opaque au scroll
+   via la classe .scrolled ajoutée par js/main.js. Comme on ne touche
+   qu'à background/border/box-shadow (pas de filter), ça ne casse pas
+   le menu mobile en position:fixed. */
 
 .nav{
   display:flex; align-items:center; justify-content:space-between;

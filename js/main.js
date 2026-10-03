@@ -34,3 +34,13 @@ window.addEventListener('DOMContentLoaded', ()=>{
   });
   if(typeof observeReveals === 'function') observeReveals();
 });
+
+/* Header transparent en haut de page, opaque dès qu'on scroll */
+function updateHeaderScrollState(){
+  const header = document.getElementById('site-header');
+  if(!header) return;
+  header.classList.toggle('scrolled', window.scrollY > 40);
+}
+window.addEventListener('scroll', updateHeaderScrollState, { passive: true });
+window.addEventListener('DOMContentLoaded', updateHeaderScrollState);
+});
