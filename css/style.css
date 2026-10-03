@@ -142,7 +142,7 @@ button{ font-family:inherit; cursor:pointer; }
 
 /* ---------- Header / Nav ---------- */
 .site-header{
-  position: sticky; top:0; z-index: 100;
+  position: fixed; top:0; left:0; right:0; z-index: 100;
   background: transparent;
   border-bottom: 1px solid transparent;
   transition: background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
