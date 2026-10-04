@@ -1,6 +1,6 @@
 /* ==========================================================================
    BOOST WEB AGENCY — Design System
-   Palette: fond noir profond, bleu électrique, bleu nuit, touches violet
+   Identité couleur stricte : bleu #001E9A uniquement (aucun violet/purple)
    Typo: Sora (display) + Inter (texte)
    ========================================================================== */
 
@@ -16,20 +16,20 @@
   --text-muted: #9aa3ba;
   --text-faint: #626a80;
 
-  --blue: #2f6bff;
-  --blue-light: #5b9dff;
-  --blue-deep: #0b2a7a;
-  --violet: #8b5cf6;
+  /* ---- Palette bleue officielle (identité de l'agence) ---- */
+  --blue: #001E9A;        /* couleur de référence absolue de la marque */
+  --blue-mid: #0B37C4;    /* variation intermédiaire, pour les dégradés */
+  --blue-light: #3D6BFF;  /* variation claire, pour liens/icônes/accents lisibles sur fond sombre */
+  --blue-deep: #000B40;   /* variation foncée, pour fonds/dégradés profonds */
   --silver: #c9ced8;
 
-  --gradient-primary: linear-gradient(135deg, var(--blue) 0%, var(--violet) 100%);
-  --gradient-text: linear-gradient(90deg, #5b9dff 0%, #8b5cf6 100%);
+  --gradient-primary: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
 
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
 
-  --shadow-glow: 0 0 60px rgba(47,107,255,0.25);
+  --shadow-glow: 0 0 60px rgba(0,30,154,0.3);
   --shadow-card: 0 10px 30px rgba(0,0,0,0.35);
 
   --ease: cubic-bezier(.22,.61,.36,1);
@@ -99,8 +99,8 @@ button{ font-family:inherit; cursor:pointer; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--blue-light);
-  background: rgba(47,107,255,0.1);
-  border: 1px solid rgba(47,107,255,0.25);
+  background: rgba(0,30,154,0.12);
+  border: 1px solid rgba(0,30,154,0.3);
   padding: 7px 16px;
   border-radius: 999px;
   margin-bottom: 20px;
@@ -128,15 +128,15 @@ button{ font-family:inherit; cursor:pointer; }
 .btn-primary{
   background: var(--gradient-primary);
   color:#fff;
-  box-shadow: 0 8px 24px rgba(47,107,255,0.35);
+  box-shadow: 0 8px 24px rgba(0,30,154,0.4);
 }
-.btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 14px 34px rgba(47,107,255,0.5); }
+.btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 14px 34px rgba(0,30,154,0.55); }
 .btn-outline{
   background: transparent;
   border-color: var(--border-strong);
   color: var(--text);
 }
-.btn-outline:hover{ border-color: var(--blue-light); background: rgba(91,157,255,0.08); transform: translateY(-2px); }
+.btn-outline:hover{ border-color: var(--blue-light); background: rgba(0,30,154,0.08); transform: translateY(-2px); }
 .btn-block{ width:100%; }
 .btn:disabled{ opacity:.4; cursor:not-allowed; transform:none !important; }
 
@@ -148,11 +148,8 @@ button{ font-family:inherit; cursor:pointer; }
   transition: border-color .3s var(--ease), box-shadow .3s var(--ease);
 }
 /* Le flou/dégradé est posé sur un calque décoratif (::before), PAS sur
-   .site-header lui-même. C'est important : un ancêtre avec filter ou
-   backdrop-filter casse les enfants position:fixed (comme le panneau de
-   menu mobile .nav-links). En le mettant sur ::before — qui est un frère
-   de .nav, pas un ancêtre de .nav-links — on garde le bel effet verre
-   dépoli SANS casser le menu mobile. */
+   .site-header lui-même, pour ne pas casser le menu mobile position:fixed
+   (un ancêtre avec filter/backdrop-filter casse ses enfants fixed). */
 .site-header::before{
   content:'';
   position:absolute; inset:0; z-index:-1;
@@ -230,7 +227,7 @@ button{ font-family:inherit; cursor:pointer; }
   .nav-actions .btn{ display:none; }
 }
 
-/* ---------- Hero / Aurora Gradient ---------- */
+/* ---------- Hero / Aurora Gradient (bleu uniquement) ---------- */
 .hero{
   position: relative;
   padding: 120px 0 100px;
@@ -244,17 +241,17 @@ button{ font-family:inherit; cursor:pointer; }
 .aurora::before, .aurora::after{
   content:''; position:absolute; width: 60vw; height: 60vw; max-width:900px; max-height:900px;
   border-radius:50%; filter: blur(110px); opacity: .55;
-  background: radial-gradient(circle at 30% 30%, #2f6bff 0%, transparent 70%);
+  background: radial-gradient(circle at 30% 30%, var(--blue-light) 0%, transparent 70%);
   animation: aurora-move-1 22s ease-in-out infinite alternate;
 }
 .aurora::after{
-  background: radial-gradient(circle at 70% 70%, #8b5cf6 0%, transparent 70%);
+  background: radial-gradient(circle at 70% 70%, var(--blue) 0%, transparent 70%);
   right:-10%; bottom:-20%; left:auto; top:auto;
   animation: aurora-move-2 26s ease-in-out infinite alternate;
-  opacity:.45;
+  opacity:.5;
 }
 .aurora::before{ top:-20%; left:-15%; }
-[data-theme="light"] .aurora::before, [data-theme="light"] .aurora::after{ opacity:.25; filter: blur(130px); }
+[data-theme="light"] .aurora::before, [data-theme="light"] .aurora::after{ opacity:.22; filter: blur(130px); }
 
 @keyframes aurora-move-1{
   0%{ transform: translate(0,0) scale(1); }
@@ -270,9 +267,10 @@ button{ font-family:inherit; cursor:pointer; }
 .hero-inner{ max-width: 760px; }
 .hero h1{ font-size: clamp(36px, 6vw, 62px); margin-bottom: 22px; }
 .hero h1 .accent{
-  background: var(--gradient-text);
-  -webkit-background-clip: text; background-clip:text; color: transparent;
+  color: var(--blue);
+  text-shadow: 0 0 40px rgba(0,30,154,0.6);
 }
+[data-theme="light"] .hero h1 .accent{ text-shadow: none; }
 .hero p{ font-size: 18px; max-width: 540px; margin-bottom: 34px; }
 .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
 
@@ -297,12 +295,12 @@ button{ font-family:inherit; cursor:pointer; }
   padding: 32px;
   transition: transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
 }
-.card:hover{ transform: translateY(-6px); border-color: rgba(91,157,255,0.35); box-shadow: var(--shadow-card), 0 0 0 1px rgba(91,157,255,0.08); }
+.card:hover{ transform: translateY(-6px); border-color: rgba(0,30,154,0.4); box-shadow: var(--shadow-card), 0 0 0 1px rgba(0,30,154,0.1); }
 
 .icon-badge{
   width:52px; height:52px; border-radius: 14px;
   display:flex; align-items:center; justify-content:center;
-  background: rgba(47,107,255,0.12); border:1px solid rgba(47,107,255,0.25);
+  background: rgba(0,30,154,0.14); border:1px solid rgba(0,30,154,0.3);
   color: var(--blue-light); margin-bottom: 22px;
 }
 .icon-badge svg{ width:24px; height:24px; }
@@ -313,7 +311,7 @@ button{ font-family:inherit; cursor:pointer; }
 .process-card{ position:relative; }
 .process-number{
   font-family:'Sora',sans-serif; font-weight:700; font-size: 34px;
-  background: var(--gradient-text); -webkit-background-clip:text; background-clip:text; color:transparent;
+  color: var(--blue-light);
   margin-bottom: 14px; display:block;
 }
 
@@ -360,18 +358,18 @@ button{ font-family:inherit; cursor:pointer; }
 .faq-answer-inner{ padding: 0 24px 22px; color: var(--text-muted); font-size:14.5px; }
 .faq-item.is-open .faq-answer{ max-height: 300px; }
 
-/* ---------- CTA banner ---------- */
+/* ---------- CTA banner (bleu uniquement, plus de purple) ---------- */
 .cta-banner{
   border-radius: var(--radius-lg);
   padding: 64px 40px;
   text-align:center;
-  background: linear-gradient(135deg, #10193c 0%, #1b1046 100%);
-  border: 1px solid rgba(139,92,246,0.25);
+  background: linear-gradient(135deg, #0a1230 0%, #081a5c 100%);
+  border: 1px solid rgba(0,30,154,0.35);
   position:relative; overflow:hidden;
 }
 .cta-banner::before{
   content:''; position:absolute; inset:0;
-  background: radial-gradient(circle at 50% 0%, rgba(91,157,255,0.25), transparent 60%);
+  background: radial-gradient(circle at 50% 0%, rgba(61,107,255,0.28), transparent 60%);
 }
 .cta-banner > *{ position:relative; }
 .cta-banner h2{ font-size: clamp(24px,3.6vw,34px); max-width:640px; margin:0 auto 14px; }
@@ -444,7 +442,7 @@ button{ font-family:inherit; cursor:pointer; }
   display:flex; align-items:center; gap:14px; padding:16px 18px; border-radius: var(--radius-sm);
   background: var(--surface); border:1px solid var(--border); transition: border-color .2s var(--ease);
 }
-.contact-method:hover{ border-color: rgba(91,157,255,0.35); }
+.contact-method:hover{ border-color: rgba(0,30,154,0.4); }
 .contact-method .icon-badge{ margin:0; width:42px; height:42px; }
 .contact-method-label{ font-size:12px; color: var(--text-faint); text-transform:uppercase; letter-spacing:.06em; }
 .contact-method-value{ font-weight:600; font-size:14.5px; }
@@ -458,27 +456,27 @@ button{ font-family:inherit; cursor:pointer; }
   border-radius: var(--radius-sm); padding: 13px 16px; color: var(--text); font-size:14.5px; font-family:inherit;
   transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
 }
-.field input:focus, .field textarea:focus, .field select:focus{ border-color: var(--blue-light); box-shadow: 0 0 0 3px rgba(91,157,255,0.18); outline:none; }
+.field input:focus, .field textarea:focus, .field select:focus{ border-color: var(--blue-light); box-shadow: 0 0 0 3px rgba(0,30,154,0.2); outline:none; }
 .field textarea{ min-height:120px; resize:vertical; }
 .field-error{ color:#ff6b6b; font-size:12.5px; margin-top:6px; display:none; }
 .field.has-error input, .field.has-error textarea, .field.has-error select{ border-color:#ff6b6b; }
 .field.has-error .field-error{ display:block; }
 
-/* ---------- Multi-step form (Appliquer) ---------- */
+/* ---------- Multi-step form (Appliquer) — bleu uniquement ---------- */
 .apply-wrap{ display:grid; grid-template-columns: 340px 1fr; gap: 0; border-radius: var(--radius-lg); overflow:hidden; border:1px solid var(--border); background: var(--surface); }
 @media (max-width: 900px){ .apply-wrap{ grid-template-columns:1fr; } }
 .apply-side{
-  background: linear-gradient(160deg,#0a1230 0%,#140a35 100%);
+  background: linear-gradient(160deg,#0a1230 0%,#081a5c 100%);
   padding: 48px 40px; position:relative; overflow:hidden;
 }
-.apply-side::before{ content:''; position:absolute; inset:0; background: radial-gradient(circle at 20% 20%, rgba(91,157,255,.3), transparent 55%); }
+.apply-side::before{ content:''; position:absolute; inset:0; background: radial-gradient(circle at 20% 20%, rgba(61,107,255,.32), transparent 55%); }
 .apply-side > *{ position:relative; }
 .apply-side h2{ font-size: 28px; margin-bottom:14px; }
-.apply-side h2 .accent{ background: var(--gradient-text); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.apply-side h2 .accent{ color: var(--blue-light); }
 .apply-side p{ color:#c6cbe0; font-size:14.5px; }
 .apply-perks{ margin-top: 30px; display:flex; flex-direction:column; gap:18px; }
 .apply-perk{ display:flex; gap:12px; align-items:flex-start; }
-.apply-perk .icon-badge{ background: rgba(91,157,255,0.18); border-color: rgba(91,157,255,0.3); width:38px; height:38px; margin:0; flex-shrink:0; }
+.apply-perk .icon-badge{ background: rgba(61,107,255,0.2); border-color: rgba(61,107,255,0.35); width:38px; height:38px; margin:0; flex-shrink:0; }
 .apply-perk .icon-badge svg{ width:18px; height:18px; }
 .apply-perk-title{ font-weight:600; font-size:14px; color:#fff; }
 .apply-perk-text{ font-size:13px; color:#a9b0cc; }
@@ -493,8 +491,8 @@ button{ font-family:inherit; cursor:pointer; }
   background: var(--surface-2); border:2px solid var(--border-strong); color: var(--text-faint);
   transition: all .3s var(--ease);
 }
-.progress-step.active{ border-color: var(--blue-light); color:#fff; background: var(--gradient-primary); box-shadow:0 0 0 4px rgba(91,157,255,0.18); }
-.progress-step.done{ border-color: var(--blue-light); background: rgba(91,157,255,0.18); color: var(--blue-light); }
+.progress-step.active{ border-color: var(--blue-light); color:#fff; background: var(--gradient-primary); box-shadow:0 0 0 4px rgba(0,30,154,0.2); }
+.progress-step.done{ border-color: var(--blue-light); background: rgba(0,30,154,0.2); color: var(--blue-light); }
 .progress-line{ flex:1; height:2px; background: var(--border-strong); border-radius:2px; position:relative; overflow:hidden; }
 .progress-line-fill{ position:absolute; inset:0; width:0%; background: var(--gradient-primary); transition: width .35s var(--ease); }
 
@@ -519,7 +517,7 @@ button{ font-family:inherit; cursor:pointer; }
   content:''; position:absolute; inset:3px; background: var(--blue-light); border-radius:50%;
   opacity:0; transform: scale(.4); transition: opacity .2s var(--ease), transform .2s var(--ease);
 }
-.choice-card.selected{ border-color: var(--blue-light); background: rgba(91,157,255,0.08); box-shadow: 0 0 0 3px rgba(91,157,255,0.12); }
+.choice-card.selected{ border-color: var(--blue-light); background: rgba(0,30,154,0.1); box-shadow: 0 0 0 3px rgba(0,30,154,0.14); }
 .choice-card.selected .dot{ border-color: var(--blue-light); }
 .choice-card.selected .dot::after{ opacity:1; transform: scale(1); }
 .choice-card[data-multi] .dot{ border-radius:5px; }
@@ -536,7 +534,7 @@ button{ font-family:inherit; cursor:pointer; }
 .confirm-screen{ text-align:center; padding: 30px 0 10px; }
 .confirm-icon{
   width:84px; height:84px; border-radius:50%; margin:0 auto 26px; background: var(--gradient-primary);
-  display:flex; align-items:center; justify-content:center; box-shadow: 0 0 0 10px rgba(91,157,255,0.1);
+  display:flex; align-items:center; justify-content:center; box-shadow: 0 0 0 10px rgba(0,30,154,0.12);
 }
 .confirm-icon svg{ width:40px; height:40px; color:#fff; }
 .confirm-screen h2{ font-size:26px; margin-bottom:10px; }
