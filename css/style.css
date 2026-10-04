@@ -153,13 +153,13 @@ button{ font-family:inherit; cursor:pointer; }
 .site-header::before{
   content:'';
   position:absolute; inset:0; z-index:-1;
-  background: linear-gradient(180deg, rgba(5,7,13,0.6) 0%, rgba(5,7,13,0.18) 100%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: linear-gradient(180deg, rgba(0,30,154,0.4) 0%, rgba(0,20,100,0.12) 70%, transparent 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   transition: background .3s var(--ease), backdrop-filter .3s var(--ease);
 }
 [data-theme="light"] .site-header::before{
-  background: linear-gradient(180deg, rgba(247,248,252,0.78) 0%, rgba(247,248,252,0.25) 100%);
+  background: linear-gradient(180deg, rgba(0,30,154,0.1) 0%, rgba(247,248,252,0.6) 70%, transparent 100%);
 }
 .site-header.scrolled{
   border-bottom-color: var(--border);
