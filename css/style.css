@@ -395,7 +395,7 @@ button{ font-family:inherit; cursor:pointer; }
 .socials svg{ width:16px; height:16px; }
 
 /* ---------- Page hero (inner pages) ---------- */
-.page-hero{ padding: 80px 0 60px; text-align:center; }
+.page-hero{ padding: 140px 0 60px; text-align:center; }
 .page-hero .eyebrow{ margin-bottom: 18px; }
 .page-hero h1{ font-size: clamp(30px,5vw,48px); max-width: 720px; margin: 0 auto 16px; }
 .page-hero p{ max-width: 620px; margin: 0 auto; font-size:17px; }
@@ -544,3 +544,36 @@ button{ font-family:inherit; cursor:pointer; }
 
 /* fade for whole hero content w/ slight delay */
 .hero .reveal{ transition-delay: .05s; }
+
+/* ---------- Pages légales (Conditions, Confidentialité, Remboursement) ---------- */
+.legal-wrap{ max-width: 760px; margin: 0 auto; }
+.legal-updated{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:13px; color: var(--text-faint); margin-bottom:40px;
+  padding: 8px 16px; border:1px solid var(--border); border-radius:999px; background: var(--surface);
+}
+.legal-content p{ font-size:15.5px; line-height:1.75; color: var(--text-muted); margin-bottom:18px; }
+.legal-content h2{
+  font-size: 21px; margin: 44px 0 16px; padding-top: 8px;
+  display:flex; align-items:baseline; gap:10px; color: var(--text);
+}
+.legal-content h2:first-child{ margin-top:0; }
+.legal-num{ color: var(--blue-light); font-family:'Sora',sans-serif; }
+.legal-content ul{ margin: 0 0 18px; padding-left: 0; display:flex; flex-direction:column; gap:9px; }
+.legal-content li{
+  list-style:none; position:relative; padding-left: 22px;
+  font-size:15px; line-height:1.65; color: var(--text-muted);
+}
+.legal-content li::before{
+  content:''; position:absolute; left:0; top:9px;
+  width:6px; height:6px; border-radius:50%; background: var(--blue-light);
+}
+.legal-toc{
+  background: var(--surface); border:1px solid var(--border); border-radius: var(--radius-md);
+  padding: 20px 24px; margin-bottom: 48px;
+}
+.legal-toc p{ margin:0; font-size:14px; }
+.legal-toc a{ color: var(--blue-light); font-weight:600; }
+
+/* ---------- Colonne légale dans le footer ---------- */
+.footer-col-legal a{ font-size: 13.5px; }

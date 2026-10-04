@@ -74,6 +74,13 @@ async function renderFooter(){
     if(!mount) return;
     const links = nav.items.filter(i=>i.visible).sort((a,b)=>a.order-b.order)
       .map(i=>`<a href="${i.link}">${i.label}</a>`).join('');
+
+    // Colonne "Conditions & Politiques" — liens légaux fixes, affichés à GAUCHE de Navigation
+    const legalLinks = `
+      <a href="conditions-generales.html">Conditions Générales</a>
+      <a href="politique-confidentialite.html">Politique de confidentialité</a>
+      <a href="politique-remboursement.html">Politique de remboursement</a>`;
+
     mount.innerHTML = `
       <div class="container">
         <div class="footer-top">
@@ -82,6 +89,10 @@ async function renderFooter(){
             <p>${settings.footer_text}</p>
           </div>
           <div class="footer-cols">
+            <div class="footer-col footer-col-legal">
+              <h4>Conditions & Politiques</h4>
+              ${legalLinks}
+            </div>
             <div class="footer-col">
               <h4>Navigation</h4>
               ${links}
