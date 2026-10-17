@@ -203,6 +203,12 @@ collections:
           - { label: "Lien Instagram", name: "instagram_link", widget: "string", required: false }
           - { label: "Lien Facebook", name: "facebook_link", widget: "string", required: false }
 
+      - name: "formulaires"
+        label: "Formulaires (envoi par e-mail)"
+        file: "content/form.json"
+        fields:
+          - { label: "Adresse du formulaire Formspree", name: "formspree_endpoint", widget: "string", required: false, hint: "Format : https://formspree.io/f/xxxxxxxx — tant que ce champ est vide, les demandes ne sont PAS envoyées par e-mail (WhatsApp continue de fonctionner). L'adresse e-mail qui reçoit les demandes se règle dans Formspree." }
+
   # =========================================================
   # 🧭 NAVIGATION
   # =========================================================

@@ -19,6 +19,9 @@
   const root = document.getElementById('applyForm');
   if(!root) return;
 
+  // État d'envoi : verrous anti-doublon + dernière tentative en échec
+  const send = { inFlight: false, done: false, attempt: null };
+
   const steps = Array.from(root.querySelectorAll('.form-step'));
   const progressWrap = document.getElementById('progressBar');
 
@@ -158,9 +161,10 @@
       showStep(state.step);
     }
     if(submit){
-      sendApplication();
-      state.step = 8;
-      showStep(state.step);
+      submitApplication(submit);
+    }
+    if(e.target.closest('.apply-retry')){
+      retryEmail();
     }
     if(restart){
       window.location.href = 'index.html';
@@ -186,47 +190,141 @@
       </div>`).join('');
   }
 
-  async function sendApplication(){
-    try{
-      const settings = await Content.load('content/settings.json');
-      const d = state.data;
-      const netlifyPayload = {
-        'form-name': 'appliquer',
-        siteType: d.siteType === 'Autre' ? d.siteTypeOther : d.siteType,
-        goal: d.goal === 'Autre' ? d.goalOther : d.goal,
-        features: d.features.map(f=> f==='Autre' ? d.featuresOther : f).join(', ') || '—',
-        hasSite: d.hasSite,
-        timeline: d.timeline,
-        name: d.name,
-        email: d.email,
-        phone: d.phone,
-        city: d.city || '—'
-      };
+  /* ---------- Envoi : e-mail (Formspree) + WhatsApp ---------- */
+  function applicationFields(){
+    const d = state.data;
+    return {
+      type_de_site: d.siteType === 'Autre' ? d.siteTypeOther : d.siteType,
+      objectif: d.goal === 'Autre' ? d.goalOther : d.goal,
+      fonctionnalites: d.features.map(f=> f==='Autre' ? d.featuresOther : f).join(', ') || '—',
+      site_existant: d.hasSite,
+      lancement_souhaite: d.timeline,
+      nom: d.name.trim(),
+      email: d.email.trim(),
+      telephone: d.phone.trim(),
+      ville_pays: d.city.trim() || '—'
+    };
+  }
 
-      // 1) Enregistre la demande dans Netlify Forms (visible dans ton
-      //    tableau de bord Netlify > Forms, notification email possible).
-      await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(netlifyPayload).toString()
-      }).catch(err => console.error('Netlify Forms', err));
+  function whatsappText(f){
+    return [
+      `Nouvelle demande de projet — Boost Web Agency`,
+      `Type de site: ${f.type_de_site}`,
+      `Objectif: ${f.objectif}`,
+      `Fonctionnalités: ${f.fonctionnalites}`,
+      `Site existant: ${f.site_existant}`,
+      `Lancement souhaité: ${f.lancement_souhaite}`,
+      `Nom: ${f.nom}`,
+      `Email: ${f.email}`,
+      `Téléphone: ${f.telephone}`,
+      `Ville/Pays: ${f.ville_pays}`
+    ].join('\n');
+  }
 
-      // 2) Ouvre aussi WhatsApp avec la demande pré-remplie.
-      const lines = [
-        `Nouvelle demande de projet — Boost Web Agency`,
-        `Type de site: ${netlifyPayload.siteType}`,
-        `Objectif: ${netlifyPayload.goal}`,
-        `Fonctionnalités: ${netlifyPayload.features}`,
-        `Site existant: ${netlifyPayload.hasSite}`,
-        `Lancement souhaité: ${netlifyPayload.timeline}`,
-        `Nom: ${netlifyPayload.name}`,
-        `Email: ${netlifyPayload.email}`,
-        `Téléphone: ${netlifyPayload.phone}`,
-        `Ville/Pays: ${netlifyPayload.city}`
-      ].join('\n');
-      const waLink = `${settings.whatsapp_link}?text=${encodeURIComponent(lines)}`;
-      window.open(waLink, '_blank');
-    }catch(err){ console.error('Envoi impossible', err); }
+  const ui = {
+    box: () => document.getElementById('applyConfirm'),
+    icon: () => document.getElementById('applyIcon'),
+    title: () => document.getElementById('applyTitle'),
+    msg: () => document.getElementById('applyMessage'),
+    note: () => document.getElementById('applyNote'),
+    actions: () => document.getElementById('applyActions')
+  };
+
+  const ICON_ERROR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 7v6M12 17h.01"/></svg>';
+
+  function paint(kind, title, message, note, buttons){
+    ui.box().className = 'confirm-screen is-' + kind;
+    ui.icon().innerHTML = kind === 'success' ? ICONS.check : (kind === 'error' ? ICON_ERROR : '');
+    ui.title().textContent = title;
+    ui.msg().innerHTML = '';
+    String(message).split('\n').forEach((line, i)=>{
+      if(i) ui.msg().appendChild(document.createElement('br'));
+      ui.msg().appendChild(document.createTextNode(line));
+    });
+    ui.note().textContent = note || '';
+    const box = ui.actions();
+    box.innerHTML = '';
+    (buttons || []).forEach(b => box.appendChild(b));
+  }
+
+  function retryButton(){
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'btn btn-outline apply-retry';
+    b.textContent = 'Réessayer l’envoi par e-mail';
+    return b;
+  }
+  function whatsappButton(url, label){
+    const a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    a.className = 'btn btn-outline'; a.textContent = label;
+    return a;
+  }
+
+  function showOutcome(result, att){
+    if(result.ok){
+      send.done = true; send.attempt = null;
+      paint('success', 'Merci !',
+        'Votre demande a été envoyée avec succès.\nNous avons bien reçu votre projet et nous vous contacterons dans les 2 heures.',
+        att.waOpened
+          ? 'WhatsApp s’est ouvert dans un nouvel onglet : envoyez-y aussi le message pour une réponse plus rapide.'
+          : 'Votre navigateur a bloqué l’ouverture de WhatsApp : utilisez le bouton ci-dessous pour nous écrire aussi par WhatsApp.',
+        att.waOpened ? [] : [whatsappButton(att.waUrl, 'Ouvrir WhatsApp')]);
+      return;
+    }
+    send.attempt = att;
+    const retryable = !['not_configured','bad_config'].includes(result.code);
+    const buttons = [];
+    if(retryable) buttons.push(retryButton());
+    if(!att.waOpened) buttons.push(whatsappButton(att.waUrl, 'Écrire sur WhatsApp'));
+    paint('error', 'Votre demande n’a pas été envoyée par e-mail',
+      result.message,
+      att.waOpened
+        ? 'WhatsApp s’est ouvert : vous pouvez y envoyer votre demande pour nous joindre.'
+        : 'Vous pouvez aussi nous envoyer votre demande directement sur WhatsApp.',
+      buttons);
+  }
+
+  async function submitApplication(submitBtn){
+    if(send.inFlight || send.done) return;       // anti double-clic
+    send.inFlight = true;
+    if(submitBtn) submitBtn.disabled = true;
+
+    // WhatsApp doit s'ouvrir pendant le clic : on s'assure que la config est déjà chargée
+    if(!FormDelivery.state.ready) await FormDelivery.ready;
+
+    const f = applicationFields();
+    const att = {
+      waUrl: FormDelivery.whatsappUrl(whatsappText(f)),
+      waOpened: false,
+      payload: Object.assign({
+        formulaire: 'Appliquer (projet)',
+        submission_id: FormDelivery.newId(),
+        page: location.href,
+        _subject: 'Nouvelle demande de projet — ' + (f.nom || 'visiteur'),
+        _gotcha: ''
+      }, f)
+    };
+
+    state.step = 8; showStep(8);
+    paint('pending', 'Envoi en cours…', 'Nous transmettons votre demande, merci de patienter.', '', []);
+
+    const emailPromise = FormDelivery.sendEmail(att.payload); // la requête part immédiatement
+    att.waOpened = FormDelivery.openWhatsApp(att.waUrl);       // dans le même clic
+    const result = await emailPromise;
+
+    send.inFlight = false;
+    if(submitBtn) submitBtn.disabled = false;
+    showOutcome(result, att);
+  }
+
+  async function retryEmail(){
+    if(send.inFlight || send.done || !send.attempt) return;
+    send.inFlight = true;
+    const att = send.attempt;                    // même submission_id, WhatsApp NON rouvert
+    paint('pending', 'Envoi en cours…', 'Nous transmettons votre demande, merci de patienter.', '', []);
+    const result = await FormDelivery.sendEmail(att.payload);
+    send.inFlight = false;
+    showOutcome(result, att);
   }
 
   showStep(1);

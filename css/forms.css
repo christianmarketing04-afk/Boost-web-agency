@@ -1,0 +1,54 @@
+/* Boost Web Agency — états d'envoi des formulaires (Contact + Appliquer)
+   Fichier additionnel : utilise uniquement les variables de style.css
+   (bleu #001E9A + noir). Aucun autre style du site n'est modifié. */
+
+.form-status{
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  font-size: 13.5px;
+  line-height: 1.55;
+  text-align: center;
+  color: var(--text);
+}
+.form-status:empty{ display:none; }
+.form-status p{ margin: 0 0 6px; color: inherit; font-size: inherit; }
+.form-status p:last-of-type{ margin-bottom: 0; }
+.form-status .form-status-note{ color: var(--text-muted); font-size: 13px; }
+
+.form-status.is-pending{ color: var(--text-muted); }
+.form-status.is-success{
+  border-color: rgba(0,30,154,0.5);
+  background: rgba(0,30,154,0.14);
+}
+.form-status.is-error{
+  border-color: rgba(255,107,107,0.5);
+  background: rgba(255,107,107,0.08);
+}
+.form-status.is-error p:first-child{ color: #ff6b6b; font-weight: 600; }
+
+.form-status-actions{
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 12px;
+}
+.form-status-actions .btn{ padding: 10px 20px; font-size: 14px; }
+
+/* ---- Écran de confirmation de « Appliquer » : trois états ---- */
+.confirm-screen .confirm-status-block{ margin: 0 auto; max-width: 440px; }
+.confirm-screen .confirm-status-block:empty{ display:none; }
+.confirm-screen.is-pending .confirm-icon{
+  background: transparent;
+  border: 4px solid rgba(0,30,154,0.25);
+  border-top-color: var(--blue-light);
+  box-shadow: none;
+  animation: confirm-spin .9s linear infinite;
+}
+.confirm-screen.is-pending .confirm-icon svg{ display:none; }
+.confirm-screen.is-error .confirm-icon{
+  background: rgba(255,107,107,0.14);
+  box-shadow: 0 0 0 10px rgba(255,107,107,0.08);
+}
+.confirm-screen.is-error .confirm-icon svg{ color:#ff6b6b; }
+.confirm-screen:not(.is-success) .confirm-next{ display:none; }
+@keyframes confirm-spin{ to{ transform: rotate(360deg); } }
+.confirm-screen .form-status-actions{ margin-bottom: 22px; }

@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/forms.css">
 </head>
 <body>
 <header id="site-header"></header>
@@ -18,22 +19,6 @@
     <div class="container">
 
       <div class="apply-wrap reveal" id="applyForm">
-
-        <!-- Formulaire caché : sert uniquement à ce que Netlify Forms
-             détecte et enregistre les champs. Le vrai formulaire visible
-             (multi-étapes) est plus bas ; son JS envoie les données ici. -->
-        <form name="appliquer" data-netlify="true" netlify-honeypot="bot-field" hidden>
-          <input type="text" name="siteType">
-          <input type="text" name="goal">
-          <input type="text" name="features">
-          <input type="text" name="hasSite">
-          <input type="text" name="timeline">
-          <input type="text" name="name">
-          <input type="email" name="email">
-          <input type="text" name="phone">
-          <input type="text" name="city">
-          <input name="bot-field">
-        </form>
 
         <!-- SIDE PANEL -->
         <aside class="apply-side">
@@ -200,18 +185,22 @@
             </div>
           </div>
 
-          <!-- STEP 8: CONFIRMATION -->
+          <!-- STEP 8: CONFIRMATION (états : envoi en cours / confirmé / échec) -->
           <div class="form-step" data-step="8">
-            <div class="confirm-screen">
-              <div class="confirm-icon">${''}</div>
-              <h2>Merci !</h2>
-              <p>Votre demande a été envoyée avec succès.<br>Nous avons bien reçu votre projet et nous vous contacterons dans les 2 heures.</p>
-              <p style="font-weight:600;color:var(--text);margin-top:24px">Que se passe-t-il maintenant ?</p>
-              <ul class="next-steps">
-                <li>Nous analysons votre projet</li>
-                <li>Un expert vous contactera rapidement</li>
-                <li>Nous discuterons de vos besoins en détail</li>
-              </ul>
+            <div class="confirm-screen is-pending" id="applyConfirm" role="status" aria-live="polite">
+              <div class="confirm-icon" id="applyIcon"></div>
+              <h2 id="applyTitle">Envoi en cours…</h2>
+              <p id="applyMessage">Nous transmettons votre demande, merci de patienter.</p>
+              <p id="applyNote" style="font-size:13px"></p>
+              <div class="confirm-status-block form-status-actions" id="applyActions"></div>
+              <div class="confirm-next">
+                <p style="font-weight:600;color:var(--text);margin-top:24px">Que se passe-t-il maintenant ?</p>
+                <ul class="next-steps">
+                  <li>Nous analysons votre projet</li>
+                  <li>Un expert vous contactera rapidement</li>
+                  <li>Nous discuterons de vos besoins en détail</li>
+                </ul>
+              </div>
               <button class="btn btn-primary" data-action="restart">Retour à l'accueil</button>
             </div>
           </div>
@@ -225,6 +214,7 @@
 <footer id="site-footer"></footer>
 
 <script src="js/content.js"></script>
+<script src="js/forms.js"></script>
 <script>
   renderHeader('appliquer.html');
   renderFooter();
@@ -232,7 +222,6 @@
     const icons = [ICONS.check, ICONS.rocket, ICONS.layout];
     el.innerHTML = icons[i] || ICONS.check;
   });
-  document.querySelector('.confirm-icon').innerHTML = ICONS.check;
   observeReveals();
 </script>
 <script src="js/apply-form.js"></script>

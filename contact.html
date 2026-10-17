@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/forms.css">
 </head>
 <body>
 <header id="site-header"></header>
@@ -36,10 +37,9 @@
           </div>
         </div>
 
-        <form class="form-card reveal reveal-delay-1" id="contactForm" name="contact" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact">
-          <p style="display:none">
-            <label>Ne pas remplir : <input name="bot-field"></label>
+        <form class="form-card reveal reveal-delay-1" id="contactForm" name="contact">
+          <p style="display:none" aria-hidden="true">
+            <label>Ne pas remplir : <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
           </p>
           <div class="field">
             <label>Nom complet <span class="req">*</span></label>
@@ -64,7 +64,7 @@
             <textarea name="message" required placeholder="Parlez-moi de votre projet..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
-          <p id="formStatus" style="margin-top:14px;font-size:13.5px;text-align:center"></p>
+          <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
         </form>
       </div>
     </div>
@@ -74,6 +74,7 @@
 <footer id="site-footer"></footer>
 
 <script src="js/content.js"></script>
+<script src="js/forms.js"></script>
 <script>
   renderHeader('contact.html');
   renderFooter();
@@ -95,26 +96,10 @@
       </a>` : ''}
     `;
 
-    document.getElementById('contactForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const f = e.target;
-      const data = new FormData(f);
-
-      // 1) Enregistre le message dans Netlify Forms (visible dans ton tableau
-      //    de bord Netlify > Forms, avec notification email si tu l'actives).
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data).toString()
-      }).catch(err => console.error('Netlify Forms', err));
-
-      // 2) Ouvre aussi WhatsApp avec le message pré-rempli, pour une réponse rapide.
-      const msg = `Nouveau message — Boost Web Agency\nNom: ${data.get('name')}\nEmail: ${data.get('email')}\nTéléphone: ${data.get('phone')||'—'}\nEntreprise: ${data.get('company')||'—'}\nMessage: ${data.get('message')}`;
-      window.open(`${settings.whatsapp_link}?text=${encodeURIComponent(msg)}`, '_blank');
-      document.getElementById('formStatus').textContent = 'Merci ! Votre message a été enregistré, et WhatsApp va s’ouvrir.';
-      f.reset();
-    });
   })();
+
+  // E-mail (Formspree) + WhatsApp : toute la logique est dans js/forms.js
+  FormDelivery.initContactForm('contactForm', 'formStatus');
 </script>
 <script src="js/main.js"></script>
 </body>
